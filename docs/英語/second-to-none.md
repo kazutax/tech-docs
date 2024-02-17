@@ -11,9 +11,9 @@ has_toc: false
 {: .note-title}
 > 表現
 >
-> **second to none**
+> **second to none**<br>
 > 直訳：誰に対しても2番手にならない<br>
-> 誰にも劣らない、最高の、一番良い、一番悪い、一番早い、etc.
+> → 誰にも劣らない、最高の、一番良い、一番悪い、一番早い etc.
 
 ### 例文
 
