@@ -103,7 +103,7 @@ function initSearch() {
 
       var index = lunr(function(){
         
-        this.use(lunr.ja);
+        // this.use(lunr.ja);
         
         this.ref('id');
         this.field('title', { boost: 200 });
