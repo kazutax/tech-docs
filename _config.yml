@@ -100,7 +100,7 @@ nav_sort: case_sensitive # Capital letters sorted before lowercase
 nav_external_links:
   - title: Profile (LinkedIn)
     url: https://www.linkedin.com/in/kazutak/
-    open_in_new_tab: true
+    opens_in_new_tab: true
 
 # Footer content
 # appears at the bottom of every page's main content
