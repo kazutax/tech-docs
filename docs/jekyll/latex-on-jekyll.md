@@ -8,17 +8,28 @@ has_toc: false
 ---
 
 # Jekyll で Latex を使いたいときの導入方法
+
 ## Step 1.
-以下を `_layouts/post.html` に記述する
+`_layouts/head.html` に以下を記述する
 ``` 
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
 ```
 ## Step 2.
+`_config.yml`に以下を記述する
+```
+kramdown:
+    math_engine: katex
+```
+## Step 3.
 markdown に書く
 ```
-$latex$
+$\LaTex code$
 ```
-$latex$
+$\LaTex code$
+$$\LaTex code$$
 
 
 ## 補足

@@ -19,13 +19,13 @@ has_toc: false
 ## 例文
 
 {: .highlight}
-"The quality of their customer service is second to none. I've never had a better experience."
+"The quality of their customer service is second to none. I've never had a better experience."<br>
 「彼らのカスタマーサービスの質は誰にも劣りません。これまでで最高の経験でした。」
 
 {: .highlight}
-"In terms of reliability, this brand is second to none. You won't regret your purchase."
+"In terms of reliability, this brand is second to none. You won't regret your purchase."<br>
 「信頼性の面でこのブランドは誰にも劣りません。購入を後悔することはないでしょう。」
 
 {: .highlight}
-"Her dedication to her work is second to none; she always goes above and beyond."
+"Her dedication to her work is second to none; she always goes above and beyond."<br>
 「彼女の仕事に対する献身は誰にも劣りません。いつも一歩先を行っています。」
