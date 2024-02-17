@@ -9,6 +9,7 @@ has_toc: false
 ---
 
 ## 表現
+
 {: .note-title}
 > second to none
 >
@@ -16,6 +17,7 @@ has_toc: false
 > 誰にも劣らない、最高の、一番良い、一番悪い、一番早い、etc.
 
 ## 例文
+
 {: .highlight}
 "The quality of their customer service is second to none. I've never had a better experience."
 「彼らのカスタマーサービスの質は誰にも劣りません。これまでで最高の経験でした。」
