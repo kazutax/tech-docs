@@ -17,25 +17,18 @@ has_toc: false
 ## Step 2.
 markdown に書く
 ```
-$E = mc^2$
+\begin{aligned}
+E = mc^2
+\end{aligned}
 ```
+\begin{aligned}
+E = mc^2
+\end{aligned}
+
 
 $E = mc^2$
-
-
-text
-
-
-
-$$\begin{aligned}
-E = mc^2
-\end{aligned}$$
-
-text
-
-\[\begin{aligned}
-E = mc^2
-\end{aligned}\]
+$ E = mc^2 $
+$$E = mc^2$$
 
 ## 参考
 + [How to support latex in GitHub-pages?](https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages/72383929#72383929)
