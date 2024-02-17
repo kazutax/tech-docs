@@ -3,7 +3,7 @@ layout: default
 title: 統計学（頻度宗派）
 nav_order: 2
 has_children: true
-permalink: /docs/index-stats.md
+permalink: /docs/index-stats
 ---
 
 # 統計学について
