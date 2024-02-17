@@ -1,9 +1,10 @@
 ---
 layout: default
-title: 英語
-nav_order: 7
+title: IT技術表現
+nav_order: 2
+parent: 英語
 has_children: true
-permalink: /docs/index-end
+# permalink: /docs/index-end
 ---
 
 ## Table of contents
