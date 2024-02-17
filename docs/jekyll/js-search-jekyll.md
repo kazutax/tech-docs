@@ -7,17 +7,17 @@ parent: jekyll
 has_toc: false
 ---
 
-# Jekyll で日本語を検索に対応する
+# Jekyll で日本語検索に対応する
 
-このサイトでも導入している [Just The Docs](https://github.com/just-the-docs/just-the-docs) のテーマにおいて、日本語検索ができなかったので対応する。
+本サイトで導入している Jekyll テーマ [Just The Docs](https://github.com/just-the-docs/just-the-docs) で、日本語検索ができなかったので対応する。
 
 ## Step 1.
 `/assets/js/vendor/` 配下に 以下の js ファイルを設置する。<br>
 ファイル自体は [lunr-languages (GitHub)](https://github.com/MihaiValentin/lunr-languages) からコピペで持ってくる。
 ```
 lunr.stemmer.support.min.js
-tinyseg.min.js
 lunr.ja.min.js
+tinyseg.js
 ```
 
 ## Step 2.
@@ -33,8 +33,8 @@ lunr.ja.min.js
 ```
 {% if site.search_enabled != false %}
    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.min.js' | absolute_url }}"></script>
    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
+   <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
 {% endif %}
 ```
 ## Step 3.
