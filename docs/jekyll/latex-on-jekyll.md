@@ -18,7 +18,7 @@ has_toc: false
 
 ```
 ## Step 2.
-`_config.yml`に以下を記述する
+`_config.yml` に以下を記述する
 ```
 kramdown:
     math_engine: katex
@@ -30,7 +30,11 @@ $\LaTex code$
 ```
 $\LaTex code$
 $$\LaTex code$$
+\\(\LaTeX code\\)
 
 
 ## 補足
 [この記事](https://tex2e.github.io/blog/latex/mathjax-to-katex) によると KaTex の方が早いらしいが、GitHub Pages では設定がめんどくさそうなので、やめた。
+
+## 参考
++ [How to support latex in GitHub-pages?](https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages)

@@ -8,15 +8,14 @@ has_toc: false
 # permalink: /index-end
 ---
 
-## 表現
-
 {: .note-title}
-> second to none
+> 表現
 >
-> 直訳：誰に対しても2番手にならない
+> **second to none**
+> 直訳：誰に対しても2番手にならない<br>
 > 誰にも劣らない、最高の、一番良い、一番悪い、一番早い、etc.
 
-## 例文
+### 例文
 
 {: .highlight}
 "The quality of their customer service is second to none. I've never had a better experience."<br>
