@@ -7,7 +7,7 @@ parent: jekyll
 has_toc: false
 ---
 
-# Jekyll で **$$\LaTex$$** を使いたいときの導入方法
+# Jekyll で $$\LaTeX$$ を使いたいときの導入方法
 
 ## Step 1.
 `_layouts/head.html` に以下を記述する

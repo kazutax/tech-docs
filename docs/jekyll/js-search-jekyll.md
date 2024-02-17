@@ -7,7 +7,7 @@ parent: jekyll
 has_toc: false
 ---
 
-# Jekyll で **日本語検索** を使いたいときの導入方法
+# Jekyll で日本語を検索に対応する
 
 このサイトでも導入している [Just The Docs](https://github.com/just-the-docs/just-the-docs) のテーマにおいて、日本語検索ができなかったので対応する。
 
