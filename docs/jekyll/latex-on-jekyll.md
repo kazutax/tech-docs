@@ -12,29 +12,30 @@ has_toc: false
 ## Step 1.
 `_layouts/head.html` に以下を記述する
 ``` 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 ```
 ## Step 2.
-`_config.yml` に以下を記述する
-```
-kramdown:
-    math_engine: katex
-```
-## Step 3.
 markdown に書く
 ```
-$\LaTex code$
+text
+
+$$\begin{aligned}
+E = mc^2
+\end{aligned}$$
+
+text
 ```
-$\LaTex code$
-$$\LaTex code$$
-\\(\LaTeX code\\)
+text
 
+$$\begin{aligned}
+E = mc^2
+\end{aligned}$$
 
-## 補足
-[この記事](https://tex2e.github.io/blog/latex/mathjax-to-katex) によると KaTex の方が早いらしいが、GitHub Pages では設定がめんどくさそうなので、やめた。
+text
+
+\[\begin{aligned}
+E = mc^2
+\end{aligned}\]
 
 ## 参考
-+ [How to support latex in GitHub-pages?](https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages)
++ [How to support latex in GitHub-pages?](https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages/72383929#72383929)
