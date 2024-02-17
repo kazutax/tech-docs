@@ -4,7 +4,7 @@ title: 日常表現
 nav_order: 99
 parent: 英語
 has_children: true
-# permalink: /docs/index-end
+# permalink: /index-end
 ---
 
 ## Table of contents

@@ -4,7 +4,7 @@ title: Second To None
 ground_parent: 英語
 parent: 日常表現
 nav_order: 1
-# permalink: /docs/index-end
+# permalink: /index-end
 ---
 
 ## 表現

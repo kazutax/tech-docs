@@ -3,11 +3,10 @@ layout: default
 title: 英語
 nav_order: 7
 has_children: true
-permalink: /docs/index-end
+permalink: /index-end
 ---
 
-## Table of contents
-{: .no_toc .text-delta}
+# 英語
 
 - TOC
 {:toc}

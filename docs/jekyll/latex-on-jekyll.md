@@ -20,5 +20,5 @@ $latex$
 $latex$
 
 
-# 補足
+## 補足
 [この記事](https://tex2e.github.io/blog/latex/mathjax-to-katex) によると KaTex の方が早いらしいが、GitHub Pages では設定がめんどくさそうなので、やめた。
