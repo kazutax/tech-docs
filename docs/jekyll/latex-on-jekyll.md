@@ -17,15 +17,15 @@ has_toc: false
 ## Step 2.
 markdown に書く
 ```
-text
-
-$$\begin{aligned}
-E = mc^2
-\end{aligned}$$
-
-text
+$E = mc^2$
 ```
+
+$E = mc^2$
+
+
 text
+
+
 
 $$\begin{aligned}
 E = mc^2
