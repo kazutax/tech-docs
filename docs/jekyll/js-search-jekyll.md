@@ -31,11 +31,12 @@ tinyseg.js
 {% endif %}
 ```
 ```
-{% if site.search_enabled != false %}
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
-{% endif %}
+{% raw %}{% if site.search_enabled != false %}
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
+{% endif %}{% endraw %}
 ```
 ## Step 3.
 `assets/js/just-the-docs.js` にある `var index = lunr(function(){` とある行のすぐ下に次のスクリプトを記述する。
