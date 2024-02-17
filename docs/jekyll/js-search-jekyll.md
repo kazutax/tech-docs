@@ -21,25 +21,18 @@ tinyseg.js
 ```
 
 ## Step 2.
-`_includes/head_custom.html` に以下を記述する
-```
-{% if site.search_enabled != false %}
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.multi.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
-   <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ru.min.js' | absolute_url }}"></script>
-{% endif %}
-```
+`_includes/head_custom.html` に以下を記述する。
 ```
 {% raw %}{% if site.search_enabled != false %}
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.multi.min.js' | absolute_url }}"></script>
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
     <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
 {% endif %}{% endraw %}
 ```
 ## Step 3.
-`assets/js/just-the-docs.js` にある `var index = lunr(function(){` とある行のすぐ下に次のスクリプトを記述する。
+`assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に次のスクリプトを追記する。
 ``` 
 this.use(lunr.ja)
 ```
