@@ -25,9 +25,7 @@ E = mc^2
 E = mc^2
 \end{aligned}
 
-
-$E = mc^2$
-$ E = mc^2 $
+$`a^2 + b^2 = c^2`$
 $$E = mc^2$$
 
 ## 参考
