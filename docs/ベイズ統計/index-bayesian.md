@@ -8,5 +8,3 @@ permalink: /index-bayesian
 
 # ベイズ統計
 
-- TOC
-{:toc}

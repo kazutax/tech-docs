@@ -8,5 +8,3 @@ permalink: /index-jekyll
 
 # Jekyll
 
-- TOC
-{:toc}

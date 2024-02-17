@@ -4,6 +4,7 @@ title: Jekyll で Latex
 nav_order: 1
 parent: jekyll
 # has_children: true
+has_toc: false
 ---
 
 # Jekyll で Latex を使いたいときの導入方法

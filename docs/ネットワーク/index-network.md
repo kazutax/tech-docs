@@ -7,6 +7,3 @@ permalink: /index-network
 ---
 
 # ネットワーク
-
-- TOC
-{:toc}

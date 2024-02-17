@@ -7,6 +7,3 @@ permalink: /index-end
 ---
 
 # 英語
-
-- TOC
-{:toc}

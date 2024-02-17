@@ -7,8 +7,4 @@ has_children: true
 # permalink: /index-end
 ---
 
-## Table of contents
-{: .no_toc .text-delta}
-
-- TOC
-{:toc}
+# ベイズ推定のキホン
