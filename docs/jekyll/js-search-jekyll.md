@@ -12,8 +12,8 @@ has_toc: false
 本サイトで導入している Jekyll テーマ [Just The Docs](https://github.com/just-the-docs/just-the-docs) で、日本語検索ができなかったので対応する。
 
 ## Step 1.
-`/assets/js/vendor/` 配下に 以下の js ファイルを設置する。<br>
-ファイル自体は [lunr-languages (GitHub)](https://github.com/MihaiValentin/lunr-languages) からコピペで持ってくる。
+`/assets/js/vendor/` 配下に、以下の js ファイルを設置する。<br>
+※ファイル自体は [lunr-languages (GitHub)](https://github.com/MihaiValentin/lunr-languages) からコピペで持ってくる。
 ```
 lunr.stemmer.support.min.js
 lunr.ja.min.js
