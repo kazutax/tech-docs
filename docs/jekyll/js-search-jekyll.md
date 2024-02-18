@@ -32,7 +32,7 @@ tinyseg.js
 {% endif %}{% endraw %}
 ```
 {: .note}
-<script>タグの読み込み順序注意！
+{% raw %}<script>{% endraw %}タグの読み込み順序注意！
 
 ## Step 3.
 `assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。
