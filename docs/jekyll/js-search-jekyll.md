@@ -24,13 +24,12 @@ tinyseg.js
 `_includes/head_custom.html` に以下を記述する。
 ```
 {% raw %}{% if site.search_enabled != false %}
-    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
-    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.multi.min.js' | absolute_url }}"></script>
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}"></script>
-    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
     <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}"></script>
 {% endif %}{% endraw %}
 ```
+
 {: .note}
 `{% raw %}<script>{% endraw %}` タグの読み込み順序注意！
 
@@ -38,17 +37,16 @@ tinyseg.js
 `assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。
 以下のような感じで：
 ``` 
-{% raw %}
-      var index = lunr(function(){
-        
-        this.use(lunr.ja); // これを追加
+
+{% raw %}var index = lunr(function(){
+    
+        this.use(lunr.ja); // ←これを追記
         
         this.ref('id');
         this.field('title', { boost: 200 });
         this.field('content', { boost: 2 });
         {%- if site.search.rel_url != false %}
-        this.field('relUrl');
-{% endraw %}
+        this.field('relUrl');{% endraw %}
 ```
 
 ## 出力結果
