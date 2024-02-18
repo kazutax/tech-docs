@@ -32,14 +32,23 @@ tinyseg.js
 {% endif %}{% endraw %}
 ```
 ## Step 3.
-`assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に次のスクリプトを追記する。
+`assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。
+以下のような感じで：
 ``` 
-this.use(lunr.ja)
+      var index = lunr(function(){
+        
+        this.use(lunr.ja); // これを追加
+        
+        this.ref('id');
+        this.field('title', { boost: 200 });
+        this.field('content', { boost: 2 });
+        {%- if site.search.rel_url != false %}
+        this.field('relUrl');
 ```
 
 ## 出力結果
 できた。
-![result image](/assets/images/js-search-results.jpg)
+![result image](/assets/images/ja-search-results.png)
 
 
 ## 補足
