@@ -34,10 +34,9 @@ tinyseg.js
 `{% raw %}<script>{% endraw %}` タグの読み込み順序注意！
 
 ## Step 3.
-`assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。
-以下のような感じで：
+`assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。<br>
+以下の感じで：
 ``` 
-
 {% raw %}var index = lunr(function(){
     
         this.use(lunr.ja); // ←これを追記
@@ -51,11 +50,10 @@ tinyseg.js
 
 ## 出力結果
 できた。
-![result image](/assets/images/ja-search-results.png)
-
+![result image](/tech-docs/assets/images/ja-search-results.png)
 
 ## 補足
-複数言語対応として、[こちら](https://github.com/just-the-docs/just-the-docs/issues/59#issuecomment-1807080785) の方法があるものの、ロシア語など他の言語ではできるようだが、日本語だとうまくいかず、沼った。
+複数言語対応として、[こちら](https://github.com/just-the-docs/just-the-docs/issues/59#issuecomment-1807080785) の方法を試したが、日本語だとうまくいかず沼った。ロシア語など他の言語ではできるようだが、、
 ```
 this.use(lunr.multiLanguage('en', 'ru') );
 ```
