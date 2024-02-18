@@ -31,12 +31,12 @@ tinyseg.js
     <script type="text/javascript" src="{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}"></script>
 {% endif %}{% endraw %}
 ```
-{: .note}
-{% raw %}<script>{% endraw %}タグの読み込み順序注意！
+<!-- {: .note}
+{% raw %}<script>{% endraw %}タグの読み込み順序注意！ -->
 
 ## Step 3.
 `assets/js/just-the-docs.js` にある `var index = lunr(function(){` のすぐ下の行に `this.use(lunr.ja);` を追記する。
-以下のような感じで：
+<!-- 以下のような感じで：
 ``` 
       var index = lunr(function(){
         
@@ -47,11 +47,11 @@ tinyseg.js
         this.field('content', { boost: 2 });
         {%- if site.search.rel_url != false %}
         this.field('relUrl');
-```
+``` -->
 
 ## 出力結果
 できた。
-![result image](/assets/images/ja-search-results.png)
+<!-- ![result image](/assets/images/ja-search-results.png) -->
 
 
 ## 補足
