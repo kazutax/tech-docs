@@ -1,8 +1,8 @@
-title: Kazuki's Tech Docs
+title: Data Tech Docs
 description: 学習内容まとめるやつ
 baseurl: / # the subpath of your site, e.g. /blog
 url: "https://kazutax.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-repository: /docs # for github-metadata
+repository: /tech-docs # for github-metadata
 
 permalink: pretty
 
