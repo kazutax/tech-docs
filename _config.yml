@@ -86,7 +86,7 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
-  "Kazuki's Tech Docs on GitHub":
+  "Data Tech Docs on GitHub":
     - "https://github.com/kazutax/tech-docs"
 
 # Makes Aux links open in a new tab. Default is false
@@ -114,8 +114,6 @@ back_to_top_text: "ページの先頭へ戻る"
 # Footer last edited timestamp
 last_edit_timestamp: false # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
-
-
 
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: false # show or hide edit this page link
