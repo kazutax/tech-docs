@@ -135,10 +135,10 @@ callouts:
     color: blue
   new:
     title: New
-    color: green
+    color: purple
   note:
     title: Note
-    color: purple
+    color: green
   warning:
     title: Warning
     color: red
