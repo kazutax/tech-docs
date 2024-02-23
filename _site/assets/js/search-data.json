@@ -317,997 +317,1032 @@
     "doc": "ベイズ推定のキホン",
     "title": "ベイズ推定のキホン",
     "content": " ",
-    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/base/",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/",
     
-    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/base/"
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/"
   },"46": {
+    "doc": "ベイズ推定のキホン",
+    "title": "■ 概要",
+    "content": ". | ベイズ統計の基本となる「理論展開・考え方」を説明する。（MCMCを使った推定、モデリング等には言及しない） | 理解の助けに、例題と Python の基本ライブラリを使ったコードスニペットを示す。 | . ",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-%E6%A6%82%E8%A6%81",
+    
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-概要"
+  },"47": {
+    "doc": "ベイズ推定のキホン",
+    "title": "■「ベイズの定理」の導出",
+    "content": "「ベイズの定理」は「条件付確率」から次のように導出する。 . 条件付確率（ある事象Aが起こったという条件の下で別の事象Bが起こる確率）: \\[ P(B|A) = \\frac{P(A \\cap B)}{P(A)} \\tag{1} \\] . 両辺にP(A)を掛けて左辺と右辺を入れ替えると、以下が得られる。 . 乗法定理: \\[ P(A \\cap B) = P(B|A)P(A) \\tag{2} \\] . ここで右辺について、Aの役割をBに担わせれば（単なる記号でどっちでもいいので） \\[ P(A \\cap B) = P(A|B)P(B) \\tag{3} \\] に変換でき、当然 (2) の右辺と等値なので、 \\[ P(A|B)P(B) = P(B|A)P(A) \\tag{4} \\] が得られる。これを \\( P(A|B) \\) について解くと、以下が得られる。 . ベイズの定理（基本版）: \\[ P(A|B) = \\frac{P(B|A)P(A)}{P(B)} \\tag{5} \\] . 事象Bが起こったときに事象Aが起きる確率を、事象Aが起こった時に事象Bが起こる確率で表現する、すなわち「逆確率」の関係を提示す。 ベイズ統計では、ある事象Aが起こる確率P(A)のことを 事前確率、その条件の下で別の事象Bが起こる確率 P(A|B) のことを 事後確率 と呼ぶ。 . 式を変換しただけで、「ベイズの定理 は 条件付確率 そのものである」と理解するのがポイント . ",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#%E3%83%99%E3%82%A4%E3%82%BA%E3%81%AE%E5%AE%9A%E7%90%86%E3%81%AE%E5%B0%8E%E5%87%BA",
+    
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#ベイズの定理の導出"
+  },"48": {
+    "doc": "ベイズ推定のキホン",
+    "title": "■ 「ベイズの定理」を実用的な式に変換",
+    "content": "上記で得られたベイズの定理（基本版）を汎化させ、実用的な形に変形する。 まずは、これまで単体で扱っていた事象\\( A \\)を、事象\\( A_1 \\)、\\( A_2 \\)、\\( A_3 \\) という３つの排反事象に分割した場合を考える。 . ある事象が複数に分割されたとき、それぞれの確率を足し上げると1（= 100%）、つまり以下のようになる点に留意。 \\[ \\sum_{i=1}^{a}P(A_i) = 1 \\tag{6} \\] . ベイズの定理（基本版）の \\( A \\) を \\( A_1 \\) に書き換えれば単に \\[ P(A_1|B) = \\frac{P(B|A_1)P(A_1)}{P(B)} \\tag{7} \\] . と書ける。ここで、事象Bの確率 \\( P(B) \\) は、事象 \\( A_1 \\)、\\( A_2 \\)、\\( A_3 \\) ３つとの同時確率の和で表現できる。 \\[ P(B) = P(B \\cap A_1) + P(B \\cap A_2) + P(B \\cap A_3) \\tag{8} \\] . 上式の右辺を（2）により次のように変換する。 \\[ P(B) = P(B|A_1)P(A_1) + P(B|A_2)P(A_2) + P(B|A_3)P(A_3) \\tag{9} \\] . これを（7）に代入すると、 \\[ P(A_1|B) = \\frac{P(B|A_1)P(A_1)}{P(B|A_1)P(A_1) + P(B|A_2)P(A_2) + P(B|A_3)P(A_3)} \\tag{10} \\] . と書ける。これを一般化すると、 . ベイズの定理（汎用版）: \\[ P(A_i|B) = \\frac{P(B|A_i)P(A_i)}{\\sum_{i=1}^{a}P(B|A_i)P(A_i)} \\tag{11} \\] . が得られる。 . 数学の文章問題では、「排反事象をいくつに分割するか」を考えることが解答のポイントになったりする。 . 例題 赤玉と白玉が入った袋が2つ存在する。（それぞれA、Bとする） 袋Aには赤玉🔴が2つ、白玉⚪️が1つはいっている。袋Bには赤玉🔴が1つ、白玉⚪️が4つはいっている。 ある人がどちらかの袋から玉をひとつ取り出し、あなたにその玉の色だけを伝える。そのとき選ばれた袋がAである確率を推定せよ。 . 解答 ・袋Aから赤玉を取り出す確率: \\( P(🔴|A) = 2/3 \\) ← 問題文より ・袋Aから白玉を取り出す確率: \\( P(⚪️|A) = 1/3 \\) ← 問題文より （※\\( 1 - P(🔴|A) \\)） ・袋Bから赤玉を取り出す確率: \\( P(🔴|B) = 1/5 \\) ← 問題文より ・袋Bから白玉を取り出す確率: \\( P(⚪️|B) = 4/5 \\) ← 問題文より （※\\( 1 - P(🔴|B) \\)） ・袋Aから赤玉を取り出す確率: \\( P(A) = 1/2 \\) ← 理由不十分の原則より ・袋Bから赤玉を取り出す確率: \\( P(B) = 1/2 \\) ← 理由不十分の原則より 取り出した玉が赤玉だった場合、選ばれた袋がAである確率は . \\begin{align} P(A|🔴) &amp;= \\cfrac{P(🔴|A)P(A)}{P(🔴|A)P(A) + P(🔴|B)P(B)} \\\\ &amp;= \\cfrac{2/3 \\times 1/2}{(2/3 \\times 1/2) + (1/5 \\times 1/2)} \\\\ &amp;= \\cfrac{10}{13} \\approx 76.92 \\% \\end{align} 取り出した玉が白玉だった場合、選ばれた袋がAである確率は . \\begin{align} P(A|⚪️) &amp;= \\cfrac{P(⚪️|A)P(A)}{P(⚪️|A)P(A) + P(⚪️|B)P(B)} \\\\ &amp;= \\cfrac{1/3 \\times 1/2}{(1/3 \\times 1/2) + (4/5 \\times 1/2)} \\\\ &amp;= \\cfrac{5}{17} \\approx 29.41 \\% \\end{align} . ",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-%E3%83%99%E3%82%A4%E3%82%BA%E3%81%AE%E5%AE%9A%E7%90%86%E3%82%92%E5%AE%9F%E7%94%A8%E7%9A%84%E3%81%AA%E5%BC%8F%E3%81%AB%E5%A4%89%E6%8F%9B",
+    
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-ベイズの定理を実用的な式に変換"
+  },"49": {
+    "doc": "ベイズ推定のキホン",
+    "title": "■ 統計モデルに「ベイズの定理」を適用する",
+    "content": "ベイズの定理を「確率」から「分布」に拡張する。 . ◇ ベイズ統計における「原因」と「結果」 . 通常の条件付確率では、因果関係は時系列順に P(結果｜原因) というように、「原因から結果」の確率を求めるが、ベイズの定理では、時間の流れに逆らって「結果から原因」の確率 P(原因｜結果) を求めようとする。 . ◇ 原因（仮定 \\( H \\) ）と結果（観測データ \\( D \\) ）を考える . 事象Aを「原因（仮定: Hypothesis）」、事象Bを「その結果の事象（観測データ: Data）」と読み替えると、ベイズの定理は次のように書き換えて解釈できる。 \\[ P(H|D) = \\cfrac{P(D|H)P(H)}{P(D)} \\tag{12} \\] \\[ P(H_i|D) = \\frac{P(D|H_i)P(H_i)}{\\sum_{i=1}^{a}P(D|H_i)P(H_i)} \\tag{13} \\] . このように変換することで、「観測データDという結果が与えられたとき、その原因が、特定の仮定Hである確率」を求める式として利用できる。 . ◇ 原因（仮定 \\( H \\) ）を確率分布のパラメーター \\( \\theta \\) に置き換える . 統計モデルでは、確率分布の性質によって現象の説明や予測ができるようになるため、確率分布のパラメーター推定は重要なテーマ。「ベイズの定理」を役立てるには、仮定 \\( H \\) を「パラメーターが \\( \\theta \\) をとるときの確率分布」と読み替える必要がある。これをベイズの定理について言い換えると、次のようになる。 \\[ P(\\theta|D) = \\cfrac{P(D|\\theta)P(\\theta)}{P(D)} \\tag{14} \\] \\[ P(\\theta_i|D) = \\frac{P(D|\\theta_i)P(\\theta_i)}{\\sum_{i=1}^{a}P(D|\\theta_i)P(\\theta_i)} \\tag{15} \\] . ◇ パラメーター \\( \\theta \\) は連続変数として捉え直す . 一般に、確率分布のパラメーターは連続変数である。「ベイズの定理」では計算を「事前確率」や「事後確率」というようにスポットでの確率計算が課題意識だったが、これを連続数に対応して「事前分布」「事後分布」という形で捉え直す。 . ・事前確率 \\( P(\\theta) \\) → 事前分布 \\( \\pi (\\theta) \\) ・尤度 \\( P(D|\\theta) \\) → 尤度 \\( f(\\theta) \\) ・事後確率 \\( P(\\theta|D) \\) → 事後分布 \\( \\pi (\\theta|D) \\) . ベイズの定理（分布対応版）: \\[ \\pi(\\theta|D) = \\cfrac{f(D|\\theta)\\pi(\\theta)}{P(D)} \\tag{16} \\] . ◇ 正規化定数 \\( k \\) とカーネル . (16) の右辺分母としている \\( P(D) \\) は、「観測データ \\( D \\) が得られる確率」を意味するが、実際に分析する場面では、多くの場合データは所与であるため重要ではない。より論点をクリアにするために正規化定数 \\( k \\) をつかって \\[ \\pi(\\theta|D) = kf(D|\\theta)\\pi(\\theta) \\tag{17} \\] と表すことがある。また、確率分布のパラメーター \\( \\theta \\) を含んでいる右辺の \\( f(D|\\theta)\\pi(\\theta) \\) のことを カーネル と呼び、その確率分布の本質的な性質を決定づけている。 実務においては、調整役の正規化定数 \\( k \\) をいちいち式に明示することなく、単に比例定数としてカーネルを強調するような書き方をする場合が多い。 . ベイズの定理（簡易版）: \\[ 事後分布 \\propto 尤度 \\times 事前分布 \\] \\[ \\pi(\\theta|D) \\propto f(D|\\theta)\\pi(\\theta) \\tag{18} \\] . 「ベイズ推定」の利用イメージを膨らませるために、シンプルな例題を Python で解く。 . 例題 表が出る確率が \\( \\theta \\) である1枚のコインがある。 このコインを5回投げた時、{表、表、裏、表、裏}の順に出た。 このとき、表の出る確率 \\( \\theta \\) の事後分布 \\( \\pi (\\theta | D) \\) を求めよ。 . 解答 まずは \\( \\pi(\\theta|D) \\propto f(D|\\theta)\\pi(\\theta) \\) を思い出す。 . ・コインの表が出る確率: \\( f(表| \\theta) = \\theta \\) ・コインの裏が出る確率: \\( f(裏| \\theta) = 1 - \\theta \\) ・事前分布: \\( \\pi(\\theta) = 1 \\space (0 \\leq \\theta \\leq 1) \\) 　┗ 「理由不十分の原則」より、事前分布 \\(\\pi (\\theta) \\)を「一様分布」とする。 . 観測データが5回分ある状況において、事後分布が変化する過程を matplotlib で示す。 . import numpy as np import matplotlib.pyplot as plt %config InlineBackend.figure_format = 'retina' # 事前分布として一様分布を設定 def pi_0(theta): return 1.0 def veiw_pi(pi): '''事後分布の形を描画''' fig = plt.figure(figsize = (10, 5)) ax = plt.axes() theta = np.arange(0,1.1,.1) ax.plot(theta, [pi(t) for t in theta]) ax.set_ylabel(' $\\pi(\\\\theta)$ ') ax.set_xlabel(' $\\\\theta$ ') ax.grid(True); veiw_pi(pi_0) . [Out:] . この事前分布に対して、「1回目に表が出た」という観測データを取り込む。 「1回目に表が出る」という事象を \\( D_1 \\) とすると、尤度は \\( f(表|\\theta) = \\theta \\) で示されるため、 . 1回目の事後分布（表）: \\( \\pi(\\theta|D_1) \\propto \\color{red} \\theta \\color{black} \\times 1 = \\color{red} \\theta \\) . ※反映箇所を赤く示しています。 . \\( (0 \\leq \\theta \\leq 1) \\) の定義域で確率の総和が1という条件から、正規化定数は \\( k = 2 \\) と求まる。1回目のデータを取り込んだという意味で、\\( \\pi_1(\\theta) \\) と表記すれば、 \\[ \\pi_1(\\theta) = 2\\theta \\] となり、グラフで示すと次のようになる。 . # ベイズ更新 1 def pi_1(theta): return 2 * theta veiw_pi(pi_1) . [Out:] . さらに、「2回目に表が出た」という事象を \\( D_2 \\) とすると、1回目と同様に、尤度は \\( f(表|\\theta) = \\theta \\) で示されるため、2回目の事後分布を1回目の事前分布に掛け合わせて、 . 2回目の事後分布（表）: \\( \\pi(\\theta|D_2) \\propto \\color{red} \\theta \\color{black} \\times 2 \\theta = 2 \\color{red} \\theta^2 \\) . \\( (0 \\leq \\theta \\leq 1) \\) の定義域で確率の総和が1という条件から、正規化定数は \\( k = 3 \\) と求められ、 \\[ \\pi_2(\\theta) = 3\\theta ^2 \\] となり、グラフで示すと次のようになる。 . # ベイズ更新 2 def pi_2(theta): return 3 * theta ** 2 veiw_pi(pi_2) . [Out:] . このように、事後分布となった結果を事前分布において、新たなデータを取り込んで次の事後分布を計算することを ベイズ更新 と呼ぶ。さらに「3回目：裏」「4回目：表」「5回目：裏」というデータを取り込んでベイズ更新を進めると、これまでと同様に、 . 3回目の事後分布（裏）: \\( \\pi(\\theta|D_3) \\propto \\color{red}(1 - \\theta) \\color{black} \\times 3\\theta^2 = 3 \\color{red} (1 - \\theta) \\color{black} \\theta^2 \\) . 規格化の条件より、正規化定数は \\( k = 12 \\) なので、 \\[ \\pi_3(\\theta|D_3) = 12(1-\\theta)\\theta^2 \\] . 4回目の事後分布（表）: \\( \\pi(\\theta|D_4) \\propto \\color{red} \\theta \\color{black} \\times 12(1-\\theta)\\theta^2 = 12(1-\\theta)\\color{red} \\theta^3 \\) . 規格化の条件より、正規化定数は \\( k = 20 \\) なので、 \\[ \\pi_4(\\theta|D_4) = 20(1-\\theta)\\theta^3 \\] . 5回目の事後分布（裏）: \\( \\pi(\\theta|D_5) \\propto \\color{red} (1 - \\theta) \\color{black} \\times 20(1-\\theta)\\theta^3 = 20 \\color{red} (1-\\theta)^2 \\color{black} \\theta^3 \\) . 規格化の条件より、正規化定数は \\( k = 60 \\) なので、この例題に対する回答は、以下となる。 \\[ \\underline{\\pi_5(\\theta|D_5) = 60(1-\\theta)^2\\theta^3} \\] . 尚、正規化定数 \\( k \\) は代数計算ライブラリの SymPy を使い、積分計算で次のように求めることができる。 . import sympy as sym theta = sym.Symbol('theta') sym.integrate((1 - theta) * theta ** 2, (theta, 0, 1)) . [Out:] 1/12 . sym.integrate((1 - theta) * theta ** 3, (theta, 0, 1)) . [Out:] 1/20 . sym.integrate(((1 - theta) ** 2) * (theta ** 3), (theta, 0, 1)) . [Out:] 1/60 . また、それぞれのグラフは次の通り。 . # ベイズ更新 3 def pi_3(theta): return 12 * (1 - theta) * theta ** 2 # ベイズ更新 4 def pi_4(theta): return 20 * (1 - theta) * theta ** 3 # ベイズ更新 5 def pi_5(theta): return 60 * ((1 - theta) ** 2) * (theta ** 3) . veiw_pi(pi_3) . [Out:] . veiw_pi(pi_4) . [Out:] . veiw_pi(pi_5) . [Out:] . 以上が、基本的なベイズ推定の考え方である。 ベイズ推定の際、MCMCで収束したら満足してしまう節があるが「これに至る理論背景ってどんなだっけ？」が曖昧だったため、整理した。 . ",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-%E7%B5%B1%E8%A8%88%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AB%E3%83%99%E3%82%A4%E3%82%BA%E3%81%AE%E5%AE%9A%E7%90%86%E3%82%92%E9%81%A9%E7%94%A8%E3%81%99%E3%82%8B",
+    
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#-統計モデルにベイズの定理を適用する"
+  },"50": {
+    "doc": "ベイズ推定のキホン",
+    "title": "参考",
+    "content": ". | (2009) 涌井良幸, “道具としてのベイズ統計” | (2015) 豊田秀樹, “基礎からのベイズ統計” | . ",
+    "url": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#%E5%8F%82%E8%80%83",
+    
+    "relUrl": "/docs/%E3%83%99%E3%82%A4%E3%82%BA%E7%B5%B1%E8%A8%88/bayes-base/#参考"
+  },"51": {
     "doc": "Buttons",
     "title": "Buttons",
     "content": " ",
     "url": "/docs/ui-components/buttons/",
     
     "relUrl": "/docs/ui-components/buttons/"
-  },"47": {
+  },"52": {
     "doc": "Buttons",
     "title": "Table of contents",
     "content": ". | Basic button styles . | Links that look like buttons | Button element | . | Using utilities with buttons . | Button size | Spacing between buttons | . | . ",
     "url": "/docs/ui-components/buttons/#table-of-contents",
     
     "relUrl": "/docs/ui-components/buttons/#table-of-contents"
-  },"48": {
+  },"53": {
     "doc": "Buttons",
     "title": "Basic button styles",
     "content": "Links that look like buttons . Link button . Link button Link button Link button . Link button . [Link button](https://just-the-docs.com){: .btn } [Link button](https://just-the-docs.com){: .btn .btn-purple } [Link button](https://just-the-docs.com){: .btn .btn-blue } [Link button](https://just-the-docs.com){: .btn .btn-green } [Link button](https://just-the-docs.com){: .btn .btn-outline } . Button element . GitHub Flavored Markdown does not support the button element, so you’ll have to use inline HTML for this: . Button element &lt;button type=\"button\" name=\"button\" class=\"btn\"&gt;Button element&lt;/button&gt; . ",
     "url": "/docs/ui-components/buttons/#basic-button-styles",
     
     "relUrl": "/docs/ui-components/buttons/#basic-button-styles"
-  },"49": {
+  },"54": {
     "doc": "Buttons",
     "title": "Using utilities with buttons",
     "content": "Button size . Wrap the button in a container that uses the font-size utility classes to scale buttons: . Big ass button . Tiny ass button . &lt;span class=\"fs-8\"&gt; [Link button](https://just-the-docs.com){: .btn } &lt;/span&gt; &lt;span class=\"fs-3\"&gt; [Tiny ass button](https://just-the-docs.com){: .btn } &lt;/span&gt; . Spacing between buttons . Use the margin utility classes to add spacing between two buttons in the same block. Button with space Button . Button with more space Button . [Button with space](https://just-the-docs.com){: .btn .btn-purple .mr-2 } [Button](https://just-the-docs.com){: .btn .btn-blue } [Button with more space](https://just-the-docs.com){: .btn .btn-green .mr-4 } [Button](https://just-the-docs.com){: .btn .btn-blue } . ",
     "url": "/docs/ui-components/buttons/#using-utilities-with-buttons",
     
     "relUrl": "/docs/ui-components/buttons/#using-utilities-with-buttons"
-  },"50": {
+  },"55": {
     "doc": "Callouts",
     "title": "Callouts",
     "content": "New (v0.4.0) . Markdown does not include support for callouts. However, you can style text as a callout using a Markdown extension supported by kramdown: block IALs. Common kinds of callouts include highlight, important, new, note, and warning. These callout names are not pre-defined by the theme: you need to define your own names. When you have configured the color and (optional) title for a callout, you can apply it to a paragraph, or to a block quote with several paragraphs, as illustrated below.1 . An untitled callout . {: .highlight } A paragraph . A paragraph . A single paragraph callout . {: .note } A paragraph . A paragraph . {: .note-title } &gt; My note title &gt; &gt; A paragraph with a custom title callout . My note title . A paragraph with a custom title callout . A multi-paragraph callout . {: .important } &gt; A paragraph &gt; &gt; Another paragraph &gt; &gt; The last paragraph . A paragraph . Another paragraph . The last paragraph . {: .important-title } &gt; My important title &gt; &gt; A paragraph &gt; &gt; Another paragraph &gt; &gt; The last paragraph . My important title . A paragraph . Another paragraph . The last paragraph . An indented callout . &gt; {: .highlight } A paragraph . A paragraph . Indented multi-paragraph callouts . &gt; {: .new } &gt; &gt; A paragraph &gt; &gt; &gt; &gt; Another paragraph &gt; &gt; &gt; &gt; The last paragraph . A paragraph . Another paragraph . The last paragraph . Nested callouts . {: .important } &gt; {: .warning } &gt; A paragraph . A paragraph . Opaque background . {: .important } &gt; {: .opaque } &gt; &lt;div markdown=\"block\"&gt; &gt; {: .warning } &gt; A paragraph &gt; &lt;/div&gt; . A paragraph . | You can put the callout markup either before or after its content. &#8617; . | . ",
     "url": "/docs/ui-components/callouts/",
     
     "relUrl": "/docs/ui-components/callouts/"
-  },"51": {
+  },"56": {
     "doc": "Code",
     "title": "Code",
     "content": " ",
     "url": "/docs/ui-components/code/",
     
     "relUrl": "/docs/ui-components/code/"
-  },"52": {
+  },"57": {
     "doc": "Code",
     "title": "Table of contents",
     "content": ". | Inline code | Syntax highlighted code blocks | Code blocks with rendered examples | Mermaid diagram code blocks . | Using a local mermaid library | Using mermaid with AsciiDoc | . | Copy button | . ",
     "url": "/docs/ui-components/code/#table-of-contents",
     
     "relUrl": "/docs/ui-components/code/#table-of-contents"
-  },"53": {
+  },"58": {
     "doc": "Code",
     "title": "Inline code",
     "content": "Code can be rendered inline by wrapping it in single back ticks. Lorem ipsum dolor sit amet, &lt;inline code snippet&gt; adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
     "url": "/docs/ui-components/code/#inline-code",
     
     "relUrl": "/docs/ui-components/code/#inline-code"
-  },"54": {
+  },"59": {
     "doc": "Code",
     "title": "Heading with &lt;inline code snippet&gt; in it.",
     "content": "Lorem ipsum dolor sit amet, `&lt;inline code snippet&gt;` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ## Heading with `&lt;inline code snippet&gt;` in it. ",
     "url": "/docs/ui-components/code/#heading-with-inline-code-snippet-in-it",
     
     "relUrl": "/docs/ui-components/code/#heading-with-inline-code-snippet-in-it"
-  },"55": {
+  },"60": {
     "doc": "Code",
     "title": "Syntax highlighted code blocks",
     "content": "Use Jekyll’s built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name: . // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require('./lang/' + l) return true; } . ```js // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require('./lang/' + l) return true; } ``` . Syntax highlighting, line numbers, and HTML compression do not work together; the combination of these features generates invalid HTML that renders incorrectly. To learn more, see “Code with line numbers”. ",
     "url": "/docs/ui-components/code/#syntax-highlighted-code-blocks",
     
     "relUrl": "/docs/ui-components/code/#syntax-highlighted-code-blocks"
-  },"56": {
+  },"61": {
     "doc": "Code",
     "title": "Code blocks with rendered examples",
     "content": "To demonstrate front end code, sometimes it’s useful to show a rendered example of that code. After including the styles from your project that you’ll need to show the rendering, you can use a &lt;div&gt; with the code-example class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the markdown=\"1\" attribute to tell Jekyll that the code you are rendering will be in Markdown format… This is about to get meta… . Link button . [Link button](https://just-the-docs.com){: .btn } . &lt;div class=\"code-example\" markdown=\"1\"&gt; [Link button](https://just-the-docs.com){: .btn } &lt;/div&gt; ```markdown [Link button](https://just-the-docs.com){: .btn } ``` . ",
     "url": "/docs/ui-components/code/#code-blocks-with-rendered-examples",
     
     "relUrl": "/docs/ui-components/code/#code-blocks-with-rendered-examples"
-  },"57": {
+  },"62": {
     "doc": "Code",
     "title": "Mermaid diagram code blocks",
     "content": "New (v0.4.0) . Mermaid allows you to add diagrams and visualizations using Markdown code blocks. It is disabled by default. However, you can turn on support for mermaid by adding a mermaid key to your _config.yml. The minimum configuration requires a version key (matching a version in jsDelivr): . mermaid: # Version of mermaid library # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/ version: \"9.1.3\" . Additional configuration options are loaded through _includes/mermaid_config.js. By default, the contents of the file are the empty object: . // _includes/mermaid_config.js {} . This loads the default settings. The contents of this object should follow mermaid’s configuration API. For example, to override the theme, change _includes/mermaid_config.js to: . // _includes/mermaid_config.js { theme: \"forest\" } . Once mermaid is installed, it can be used in markdown files. The markdown for a simple flowchart example might look like the following: . ```mermaid graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D; ``` . which renders: . graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D; . Note: for demonstration purposes, we’ve enabled mermaid on this site. It is still disabled by default, and users need to opt-in to use it. Using a local mermaid library . To load a local version of mermaid, also use the path key to specify the location of the library; e.g. mermaid: version: \"10.1.0\" # for (v10+) path: \"/assets/js/mermaid.esm.min.mjs\" # for (&lt;v10): # path: \"/assets/js/mermaid.min.js\" # Note: copy both `mermaid.esm.min.mjs` (v10+) or `mermaid.min.js` (&lt;v10) and the associated # `.map` file from the specified version of `mermaid/dist` to `/assets/js/`. For mermaid versions &gt;=10, this file is imported directly as an ESM module (rather than as a plain &lt;script&gt; tag); users should use the mermaid.esm.min.mjs file. In contrast, for mermaid versions &lt;10, this file is loaded as a script tag; it should be a standalone CJS file (i.e. mermaid.min.js). Mermaid versions 10.0 - 10.1 (and possibly, future releases) still encode relative imports in mermaid.esm.min.mjs. Local users must copy all of the contents of the dist folder to the specified path (preserving the relative location of the files). Just the Docs is actively monitoring mermaid releases; an upstream fix is planned. Using mermaid with AsciiDoc . Users of AsciiDoc (e.g. via jekyll-asciidoc) may need additional configuration to use mermaid. By default, AsciiDoc generates HTML markup that mermaid cannot properly parse. The simplest way to resolve this is to use a passthrough block: . ++++ &lt;pre class=\"language-mermaid\"&gt; graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D; &lt;/pre&gt; ++++ . Alternatively, community member @flyx has contributed a Ruby extension that does not require extra markup. The extension is available as a GitHub Gist. Thank you to @flyx! . The asciidoctor-diagram extension which also supports mermaid is not recommended for use with Just the Docs, since it requires separate configuration e.g. for theming, and is known to not be trivial to set up. ",
     "url": "/docs/ui-components/code/#mermaid-diagram-code-blocks",
     
     "relUrl": "/docs/ui-components/code/#mermaid-diagram-code-blocks"
-  },"58": {
+  },"63": {
     "doc": "Code",
     "title": "Copy button",
     "content": "New (v0.4.0) . The copy button for code blocks can be enabled or disabled via the enable_copy_code_button key in _config.yml. By default, the value of this key is false; users need to opt-in. # For copy button on code enable_copy_code_button: true . Note that this feature requires JavaScript; if JavaScript is disabled in the browser, this feature will not work. In addition, this feature uses navigator.clipboard, which is only available in secure contexts (such as over HTTPS). If the site is viewed in an insecure context, the copy button will not work (relevant issue: #1202). ",
     "url": "/docs/ui-components/code/#copy-button",
     
     "relUrl": "/docs/ui-components/code/#copy-button"
-  },"59": {
+  },"64": {
     "doc": "Color",
     "title": "Color Utilities",
     "content": " ",
     "url": "/docs/utilities/color/#color-utilities",
     
     "relUrl": "/docs/utilities/color/#color-utilities"
-  },"60": {
+  },"65": {
     "doc": "Color",
     "title": "Table of contents",
     "content": ". | Light Greys | Dark Greys | Purples | Blues | Greens | Yellows | Reds | . All the colors used in Just the Docs have been systematized into a series of variables that have been extended to both font color and background color utility classes. ",
     "url": "/docs/utilities/color/#table-of-contents",
     
     "relUrl": "/docs/utilities/color/#table-of-contents"
-  },"61": {
+  },"66": {
     "doc": "Color",
     "title": "Light Greys",
     "content": "| Color value | Font color utility | Background color utility | . | grey-lt-000 | .text-grey-lt-000 | .bg-grey-lt-000 | . | grey-lt-100 | .text-grey-lt-100 | .bg-grey-lt-100 | . | grey-lt-200 | .text-grey-lt-200 | .bg-grey-lt-200 | . | grey-lt-300 | .text-grey-lt-300 | .bg-grey-lt-300 | . ",
     "url": "/docs/utilities/color/#light-greys",
     
     "relUrl": "/docs/utilities/color/#light-greys"
-  },"62": {
+  },"67": {
     "doc": "Color",
     "title": "Dark Greys",
     "content": "| Color value | Font color utility | Background color utility | . | grey-dk-000 | .text-grey-dk-000 | .bg-grey-dk-000 | . | grey-dk-100 | .text-grey-dk-100 | .bg-grey-dk-100 | . | grey-dk-200 | .text-grey-dk-200 | .bg-grey-dk-200 | . | grey-dk-250 | .text-grey-dk-250 | .bg-grey-dk-250 | . | grey-dk-300 | .text-grey-dk-300 | .bg-grey-dk-300 | . ",
     "url": "/docs/utilities/color/#dark-greys",
     
     "relUrl": "/docs/utilities/color/#dark-greys"
-  },"63": {
+  },"68": {
     "doc": "Color",
     "title": "Purples",
     "content": "| Color value | Font color utility | Background color utility | . | purple-000 | .text-purple-000 | .bg-purple-000 | . | purple-100 | .text-purple-100 | .bg-purple-100 | . | purple-200 | .text-purple-200 | .bg-purple-200 | . | purple-300 | .text-purple-300 | .bg-purple-300 | . ",
     "url": "/docs/utilities/color/#purples",
     
     "relUrl": "/docs/utilities/color/#purples"
-  },"64": {
+  },"69": {
     "doc": "Color",
     "title": "Blues",
     "content": "| Color value | Font color utility | Background color utility | . | blue-000 | .text-blue-000 | .bg-blue-000 | . | blue-100 | .text-blue-100 | .bg-blue-100 | . | blue-200 | .text-blue-200 | .bg-blue-200 | . | blue-300 | .text-blue-300 | .bg-blue-300 | . ",
     "url": "/docs/utilities/color/#blues",
     
     "relUrl": "/docs/utilities/color/#blues"
-  },"65": {
+  },"70": {
     "doc": "Color",
     "title": "Greens",
     "content": "| Color value | Font color utility | Background color utility | . | green-000 | .text-green-000 | .bg-green-000 | . | green-100 | .text-green-100 | .bg-green-100 | . | green-200 | .text-green-200 | .bg-green-200 | . | green-300 | .text-green-300 | .bg-green-300 | . ",
     "url": "/docs/utilities/color/#greens",
     
     "relUrl": "/docs/utilities/color/#greens"
-  },"66": {
+  },"71": {
     "doc": "Color",
     "title": "Yellows",
     "content": "| Color value | Font color utility | Background color utility | . | yellow-000 | .text-yellow-000 | .bg-yellow-000 | . | yellow-100 | .text-yellow-100 | .bg-yellow-100 | . | yellow-200 | .text-yellow-200 | .bg-yellow-200 | . | yellow-300 | .text-yellow-300 | .bg-yellow-300 | . ",
     "url": "/docs/utilities/color/#yellows",
     
     "relUrl": "/docs/utilities/color/#yellows"
-  },"67": {
+  },"72": {
     "doc": "Color",
     "title": "Reds",
     "content": "| Color value | Font color utility | Background color utility | . | red-000 | .text-red-000 | .bg-red-000 | . | red-100 | .text-red-100 | .bg-red-100 | . | red-200 | .text-red-200 | .bg-red-200 | . | red-300 | .text-red-300 | .bg-red-300 | . ",
     "url": "/docs/utilities/color/#reds",
     
     "relUrl": "/docs/utilities/color/#reds"
-  },"68": {
+  },"73": {
     "doc": "Color",
     "title": "Color",
     "content": " ",
     "url": "/docs/utilities/color/",
     
     "relUrl": "/docs/utilities/color/"
-  },"69": {
+  },"74": {
     "doc": "Configuration",
     "title": "Configuration",
     "content": "Just the Docs has some specific configuration parameters that can be defined in your Jekyll site’s _config.yml file. ",
     "url": "/docs/configuration/",
     
     "relUrl": "/docs/configuration/"
-  },"70": {
+  },"75": {
     "doc": "Configuration",
     "title": "Table of contents",
     "content": ". | Site logo | Site favicon | Search | Mermaid Diagrams | Aux links | Heading anchor links | External navigation links | Footer content | Color scheme | Callouts | Google Analytics | Document collections | . View this site’s _config.yml file as an example. ",
     "url": "/docs/configuration/#table-of-contents",
     
     "relUrl": "/docs/configuration/#table-of-contents"
-  },"71": {
+  },"76": {
     "doc": "Configuration",
     "title": "Site logo",
     "content": "# Set a path/url to a logo that will be displayed instead of the title logo: \"/assets/images/just-the-docs.png\" . ",
     "url": "/docs/configuration/#site-logo",
     
     "relUrl": "/docs/configuration/#site-logo"
-  },"72": {
+  },"77": {
     "doc": "Configuration",
     "title": "Site favicon",
     "content": "# Set a path/url to a favicon that will be displayed by the browser favicon_ico: \"/assets/images/favicon.ico\" . If the path to your favicon is /favicon.ico, you can leave favicon_ico unset. ",
     "url": "/docs/configuration/#site-favicon",
     
     "relUrl": "/docs/configuration/#site-favicon"
-  },"73": {
+  },"78": {
     "doc": "Configuration",
     "title": "Search",
     "content": "# Enable or disable the site search # Supports true (default) or false search_enabled: true search: # Split pages into sections that can be searched individually # Supports 1 - 6, default: 2 heading_level: 2 # Maximum amount of previews per search result # Default: 3 previews: 3 # Maximum amount of words to display before a matched word in the preview # Default: 5 preview_words_before: 5 # Maximum amount of words to display after a matched word in the preview # Default: 10 preview_words_after: 10 # Set the search token separator # Default: /[\\s\\-/]+/ # Example: enable support for hyphenated search words tokenizer_separator: /[\\s/]+/ # Display the relative url in search results # Supports true (default) or false rel_url: true # Enable or disable the search button that appears in the bottom right corner of every page # Supports true or false (default) button: false . ",
     "url": "/docs/configuration/#search",
     
     "relUrl": "/docs/configuration/#search"
-  },"74": {
+  },"79": {
     "doc": "Configuration",
     "title": "Mermaid Diagrams",
     "content": "New (v0.4.0) . The minimum configuration requires the key for version (from jsDelivr) in _config.yml: . mermaid: # Version of mermaid library # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/ version: \"9.1.3\" . Provide a path instead of a version key to load the mermaid library from a local file. See the Code documentation for more configuration options and information. ",
     "url": "/docs/configuration/#mermaid-diagrams",
     
     "relUrl": "/docs/configuration/#mermaid-diagrams"
-  },"75": {
+  },"80": {
     "doc": "Configuration",
     "title": "Aux links",
     "content": "# Aux links for the upper right navigation aux_links: \"Just the Docs on GitHub\": - \"//github.com/just-the-docs/just-the-docs\" # Makes Aux links open in a new tab. Default is false aux_links_new_tab: false . ",
     "url": "/docs/configuration/#aux-links",
     
     "relUrl": "/docs/configuration/#aux-links"
-  },"76": {
+  },"81": {
     "doc": "Configuration",
     "title": "Heading anchor links",
     "content": "# Heading anchor links appear on hover over h1-h6 tags in page content # allowing users to deep link to a particular heading on a page. # # Supports true (default) or false heading_anchors: true . ",
     "url": "/docs/configuration/#heading-anchor-links",
     
     "relUrl": "/docs/configuration/#heading-anchor-links"
-  },"77": {
+  },"82": {
     "doc": "Configuration",
     "title": "External navigation links",
     "content": "New (v0.4.0) . External links can be added to the navigation through the nav_external_links option. See Navigation Structure for more details. ",
     "url": "/docs/configuration/#external-navigation-links",
     
     "relUrl": "/docs/configuration/#external-navigation-links"
-  },"78": {
+  },"83": {
     "doc": "Configuration",
     "title": "Footer content",
     "content": "# Footer content # appears at the bottom of every page's main content # Note: The footer_content option is deprecated and will be removed in a future major release. Please use `_includes/footer_custom.html` for more robust markup / liquid-based content. footer_content: \"Copyright &amp;copy; 2017-2020 Patrick Marsceill. Distributed by an &lt;a href=\\\"https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt\\\"&gt;MIT license.&lt;/a&gt;\" # Footer last edited timestamp last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter last_edit_time_format: \"%b %e %Y at %I:%M %p\" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html # Footer \"Edit this page on GitHub\" link text gh_edit_link: true # show or hide edit this page link gh_edit_link_text: \"Edit this page on GitHub.\" gh_edit_repository: \"https://github.com/just-the-docs/just-the-docs\" # the github URL for your repo gh_edit_branch: \"main\" # the branch that your docs is served from # gh_edit_source: docs # the source that your files originate from gh_edit_view_mode: \"tree\" # \"tree\" or \"edit\" if you want the user to jump into the editor immediately . note: footer_content is deprecated, but still supported. For a better experience we have moved this into an include called _includes/footer_custom.html which will allow for robust markup / liquid-based content. | the “page last modified” data will only display if a page has a key called last_modified_date, formatted in some readable date format | last_edit_time_format uses Ruby’s DateTime formatter; see examples and more information at this link. | gh_edit_repository is the URL of the project’s GitHub repository | gh_edit_branch is the branch that the docs site is served from; defaults to main | gh_edit_source is the source directory that your project files are stored in (should be the same as site.source) | gh_edit_view_mode is \"tree\" by default, which brings the user to the github page; switch to \"edit\" to bring the user directly into editing mode | . ",
     "url": "/docs/configuration/#footer-content",
     
     "relUrl": "/docs/configuration/#footer-content"
-  },"79": {
+  },"84": {
     "doc": "Configuration",
     "title": "Color scheme",
     "content": "# Color scheme supports \"light\" (default) and \"dark\" color_scheme: dark . Preview dark color scheme . See Customization for more information. ",
     "url": "/docs/configuration/#color-scheme",
     
     "relUrl": "/docs/configuration/#color-scheme"
-  },"80": {
+  },"85": {
     "doc": "Configuration",
     "title": "Callouts",
     "content": "New (v0.4.0) . To use this feature, you need to configure a color and (optionally) title for each kind of callout you want to use, e.g.: . callouts: warning: title: Warning color: red . This uses the color $red-000 for the background of the callout, and $red-300 for the title and box decoration.1 You can then style a paragraph as a warning callout like this: . {: .warning } A paragraph... The colors grey-lt, grey-dk, purple, blue, green, yellow, and red are predefined; to use a custom color, you need to define its 000 and 300 levels in your SCSS files. For example, to use pink, add the following to your _sass/custom/setup.scss file: . $pink-000: #f77ef1; $pink-100: #f967f1; $pink-200: #e94ee1; $pink-300: #dd2cd4; . You can override the default opacity of the background for a particular callout, e.g.: . callouts: custom: color: pink opacity: 0.3 . You can change the default opacity (0.2) for all callouts, e.g.: . callouts_opacity: 0.3 . You can also adjust the overall level of callouts. The value of callouts_level is either quiet or loud; loud increases the saturation and lightness of the backgrounds. The default level is quiet when using the light or custom color schemes, and loud when using the dark color scheme. See Callouts for more information. ",
     "url": "/docs/configuration/#callouts",
     
     "relUrl": "/docs/configuration/#callouts"
-  },"81": {
+  },"86": {
     "doc": "Configuration",
     "title": "Google Analytics",
     "content": "Google Analytics 4 will replace Universal Analytics. On July 1, 2023, standard Universal Analytics properties will stop processing new hits. The earlier you migrate, the more historical data and insights you will have in Google Analytics 4. Universal Analytics (UA) and Google Analytics 4 (GA4) properties are supported. # Google Analytics Tracking (optional) # Supports a CSV of tracking ID strings (eg. \"UA-1234567-89,G-1AB234CDE5\") ga_tracking: UA-2709176-10 ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (true/nil by default) . Multiple IDs . New (v0.4.0) . This theme supports multiple comma-separated tracking IDs. This helps seamlessly transition UA properties to GA4 properties by tracking both for a while. ga_tracking: \"UA-1234567-89,G-1AB234CDE5\" . ",
     "url": "/docs/configuration/#google-analytics",
     
     "relUrl": "/docs/configuration/#google-analytics"
-  },"82": {
+  },"87": {
     "doc": "Configuration",
     "title": "Document collections",
     "content": "By default, the navigation and search include normal pages. You can also use Jekyll collections which group documents semantically together. Collection folders always start with an underscore (_), e.g. _tests. You won’t see your collections if you omit the prefix. For example, put all your test files in the _tests folder and create the tests collection: . # Define Jekyll collections collections: # Define a collection named \"tests\", its documents reside in the \"_tests\" directory tests: permalink: \"/:collection/:path/\" output: true just_the_docs: # Define which collections are used in just-the-docs collections: # Reference the \"tests\" collection tests: # Give the collection a name name: Tests # Exclude the collection from the navigation # Supports true or false (default) # nav_exclude: true # Fold the collection in the navigation # Supports true or false (default) # nav_fold: true # note: this option is new in v0.4 # Exclude the collection from the search # Supports true or false (default) # search_exclude: true . The navigation for all your normal pages (if any) is displayed before those in collections. New (v0.4.0) Including nav_fold: true in a collection configuration folds that collection: an expander symbol appears next to the collection name, and clicking it displays/hides the links to the top-level pages of the collection.2 . You can reference multiple collections. This creates categories in the navigation with the configured names. collections: tests: permalink: \"/:collection/:path/\" output: true tutorials: permalink: \"/:collection/:path/\" output: true just_the_docs: collections: tests: name: Tests tutorials: name: Tutorials . When all your pages are in a single collection, its name is not displayed. The navigation for each collection is a separate name space for page titles: a page in one collection cannot be a child of a page in a different collection, or of a normal page. | If you use the dark color scheme, this callout uses $red-300 for the background, and $red-000 for the title. &#8617; . | New (v0.6.0) When JavaScript is disabled in the browser, all folded collections are automatically expanded, since clicking expander symbols has no effect. (In previous releases, navigation into folded collections required JavaScript to be enabled.) &#8617; . | . ",
     "url": "/docs/configuration/#document-collections",
     
     "relUrl": "/docs/configuration/#document-collections"
-  },"83": {
+  },"88": {
     "doc": "Customization",
     "title": "Customization",
     "content": " ",
     "url": "/docs/customization/",
     
     "relUrl": "/docs/customization/"
-  },"84": {
+  },"89": {
     "doc": "Customization",
     "title": "Table of contents",
     "content": ". | Color schemes | Custom schemes . | Define a custom scheme | Use a custom scheme | Switchable custom scheme | . | Override and define new variables | Override and completely custom styles | Override includes . | Custom TOC Heading | Custom Footer | Custom Head | Custom Header | Custom Nav Footer | Custom Search Placeholder | . | Custom layouts and includes . | Default layout and includable components | Alternative layouts and example (minimal) | Default layout and inheritance chain | Overridden default Jekyll layouts | . | . ",
     "url": "/docs/customization/#table-of-contents",
     
     "relUrl": "/docs/customization/#table-of-contents"
-  },"85": {
+  },"90": {
     "doc": "Customization",
     "title": "Color schemes",
     "content": "Just the Docs supports two color schemes: light (default), and dark. To enable a color scheme, set the color_scheme parameter in your site’s _config.yml file: . Example . # Color scheme supports \"light\" (default) and \"dark\" color_scheme: dark . Preview dark color scheme . deprecated: legacy_light . New (v0.4.2) . In Just the Docs version 0.4.2, we changed the default syntax highlighting theme for the light color scheme to have higher contrast. Users who want to use the old highlighting need to explicitly opt-in with the deprecated legacy_light color scheme. In a future major release of Just the Docs, we will remove this color scheme. ",
     "url": "/docs/customization/#color-schemes",
     
     "relUrl": "/docs/customization/#color-schemes"
-  },"86": {
+  },"91": {
     "doc": "Customization",
     "title": "Custom schemes",
     "content": "Define a custom scheme . You can add custom schemes. If you want to add a scheme named foo (can be any name) just add a file _sass/color_schemes/foo.scss (replace foo by your scheme name) where you override theme variables to change colors, fonts, spacing, etc. Since the default color scheme is light, your custom scheme is implicitly based on the variable settings used by the light scheme. If you want your custom scheme to be based on the dark scheme, you need to start your file with the following line: . @import \"./color_schemes/dark\"; . You can define custom schemes based on other custom schemes in the same way. Available variables are listed in the _variables.scss file. For example, to change the link color from the purple default to blue, include the following inside your scheme file: . Example . $link-color: $blue-000; . Keep in mind that changing a variable will not automatically change the value of other variables that depend on it. For example, the default link color ($link-color) is set to $purple-000. However, redefining $purple-000 in a custom color scheme will not automatically change $link-color to match it. Instead, each variable that relies on previously-cascaded values must be manually reimplemented by copying the dependent rules from _variables.scss — in this case, rewriting $link-color: $purple-000;. Note: Editing the variables directly in _sass/support/variables.scss is not recommended and can cause other dependencies to fail. Please use scheme files. Use a custom scheme . To use the custom color scheme, only set the color_scheme parameter in your site’s _config.yml file: . color_scheme: foo . Switchable custom scheme . If you want to be able to change the scheme dynamically, for example via javascript, just add a file assets/css/just-the-docs-foo.scss (replace foo by your scheme name) with the following content: . --- --- {% include css/just-the-docs.scss.liquid color_scheme=\"foo\" %} . This allows you to switch the scheme via the following javascript. jtd.setTheme(\"foo\") . ",
     "url": "/docs/customization/#custom-schemes",
     
     "relUrl": "/docs/customization/#custom-schemes"
-  },"87": {
+  },"92": {
     "doc": "Customization",
     "title": "Override and define new variables",
     "content": "New (v0.4.0) . To define new SCSS variables or functions, place SCSS code in _sass/custom/setup.scss. This should not be used for defining custom styles (see the next section) or overriding color scheme variables (in this case, you should create a new color scheme). This is most commonly-used to define custom callout colors. For example, . // _sass/custom/setup.scss $pink-000: #f77ef1; $pink-100: #f967f1; $pink-200: #e94ee1; $pink-300: #dd2cd4; . In particular: this file is imported after the theme’s variables and functions are defined, but before any CSS classes are emitted. ",
     "url": "/docs/customization/#override-and-define-new-variables",
     
     "relUrl": "/docs/customization/#override-and-define-new-variables"
-  },"88": {
+  },"93": {
     "doc": "Customization",
     "title": "Override and completely custom styles",
     "content": "For styles that aren’t defined as SCSS variables, you may want to modify specific CSS classes. Additionally, you may want to add completely custom CSS specific to your content. To do this, put your styles in the file _sass/custom/custom.scss. This will allow for all overrides to be kept in a single file, and for any upstream changes to still be applied. For example, if you’d like to add your own styles for printing a page, you could add the following styles. Example . // Print-only styles. @media print { .side-bar, .page-header { display: none; } .main-content { max-width: auto; margin: 1em; } } . ",
     "url": "/docs/customization/#override-and-completely-custom-styles",
     
     "relUrl": "/docs/customization/#override-and-completely-custom-styles"
-  },"89": {
+  },"94": {
     "doc": "Customization",
     "title": "Override includes",
     "content": "You can customize the theme by overriding any of the custom Jekyll includes files that it provides. To do this, create an _includes directory and make a copy of the specific file you wish to modify. The content in this file will override the theme defaults. You can learn more about this process in the Jekyll docs for Overriding theme defaults. Just the Docs provides the following custom includes files: . Custom TOC Heading . New (v0.4.0) . _includes/toc_heading_custom.html . If the page has any child pages, and has_toc is not set to false, this content appears as a heading above the auto-generating list of child pages after the page’s content. Example . To change the default TOC heading to “Contents”, create _includes/toc_heading_custom.html and add: . &lt;h2 class=\"text-delta\"&gt;Contents&lt;/h2&gt; . The (optional) text-delta class makes the heading appear as Contents . Custom Footer . _includes/footer_custom.html . This content appears at the bottom of every page’s main content. More info for this include can be found in the Configuration - Footer content. Custom Head . _includes/head_custom.html . Any HTML added to this file will be inserted before the closing &lt;head&gt; tag. This might include additional &lt;meta&gt;, &lt;link&gt;, or &lt;script&gt; tags. The &lt;head&gt; tag automatically includes a link to an existing favicon if you set favicon_ico to the corresponding path in your configuration, or if the path to the favicon is /favicon.ico. Custom Header . _includes/header_custom.html . Content added to this file appears at the top of every page’s main content between the site search and auxiliary links if they are enabled. If search_enabled were set to false and aux_links were removed, the content of header_custom.html would occupy the space at the top of every page. Custom Nav Footer . New (v0.4.0) . _includes/nav_footer_custom.html . Any content added to this file will appear at the bottom left of the page below the site’s navigation. By default an attribution to Just the Docs is displayed which reads, This site uses Just the Docs, a documentation theme for Jekyll.. Custom Search Placeholder . New (v0.4.0) . _includes/search_placeholder_custom.html . Content added to this file will replace the default placeholder text in the search bar (and its aria-label), after stripping HTML and leading/trailing whitespace. By default, the content of the include is: . Search {{site.title}} . Override this file to render a custom placeholder. One common use-case is internationalization; for example, . Chercher notre site . would make the placeholder text “Chercher notre site”. Liquid code (including Jekyll variables) is also supported. ",
     "url": "/docs/customization/#override-includes",
     
     "relUrl": "/docs/customization/#override-includes"
-  },"90": {
+  },"95": {
     "doc": "Customization",
     "title": "Custom layouts and includes",
     "content": "New (v0.4.0) . Advanced . Just the Docs uses Jekyll’s powerful layouts and includes features to generate and compose various elements of the site. Jekyll users and developers can extend or replace existing layouts and includes to customize the entire site layout. Default layout and includable components . The default layout is inherited by most of the “out-of-the-box” pages provided by Just the Docs. It composes various re-usable components of the site, including the sidebar, navbar, footer, breadcrumbs, and various imports. Most users who create new pages or layouts will inherit from default. Here is a simplified code example of what it looks like: . &lt;!-- a simplified version of _layouts/default.html --&gt; &lt;html&gt; {% include head.html %} &lt;body&gt; {% include icons/icons.html %} {% include components/sidebar.html %} {% include components/header.html %} {% include components/breadcrumbs.html %} {% if site.heading_anchors != false %} {% include vendor/anchor_headings.html html=content ... %} {% else %} {{ content }} {% endif %} {% if page.has_children == true and page.has_toc != false %} {% include components/children_nav.html %} {% endif %} {% include components/footer.html %} {% if site.search_enabled != false %} {% include components/search_footer.html %} {% endif %} {% if site.mermaid %} {% include components/mermaid.html %} {% endif %} &lt;/body&gt; &lt;/html&gt; . Component summary . Defining a new _includes with the same name as any of these components will significantly change the existing layout. Please proceed with caution when adjusting them. To briefly summarize each component: . | _includes/head.html is the entire &lt;head&gt; tag for the site; this imports stylesheets, various JavaScript files (ex: analytics, mermaid, search, and Just the Docs code), and SEO / meta information. | _includes/icons/icons.html imports all SVG icons that are used throughout the site. Some, such as those relating to search or code snippet copying, are only loaded when those features are enabled. | _includes/components/sidebar.html renders the sidebar, containing the site header, navigation links, external links, collections, and nav footer. | _includes/components/header.html renders the navigation header, containing the search bar, custom header, and aux links | _includes/components/breadcrumbs.html renders the breadcrumbs feature | vendor/anchor_headings.html is a local copy of Vladimir Jimenez’s jekyll-anchor-headings snippet | _includes/components/children_nav.html renders a list of nav links to child pages on parent pages | _includes/components/footer.html renders the bottom-of-page footer | _includes/components/search_footer.html renders DOM elements that are necessary for the search bar to work | _includes/components/mermaid.html initializes mermaid if the feature is enabled | . Each of these components can be overridden individually using the same process described in the Override includes section. In particular, the granularity of components should allow users to replace certain components (such as the sidebar) without having to adjust the rest of the code. Future versions may subdivide components further; we guarantee that we will only place them in folders (ex components/, icons/, or a new js/) to avoid top-level namespace collisions. Alternative layouts and example (minimal) . Users can develop custom layouts that compose, omit, or add components differently. We provide one first-class example titled minimal, inspired by Kevin Lin’s work in just-the-class. This minimal layout does not render the sidebar, header, or search. To see an example, visit the minimal layout test page. Here is a simplified code example of what it looks like: . &lt;!-- a simplified version of _layouts/minimal.html --&gt; &lt;html&gt; {% include head.html %} &lt;body&gt; {% include icons/icons.html %} {% comment %} Bandaid fix for breadcrumbs here! {% endcomment %} {% include components/breadcrumbs.html %} {% if site.heading_anchors != false %} {% include vendor/anchor_headings.html html=content ... %} {% else %} {{ content }} {% endif %} {% if page.has_children == true and page.has_toc != false %} {% include components/children_nav.html %} {% endif %} {% include components/footer.html %} {% if site.mermaid %} {% include components/mermaid.html %} {% endif %} &lt;/body&gt; &lt;/html&gt; . This layout is packaged in Just the Docs. Users can indicate this alternative layout in page front matter: . --- layout: minimal title: Minimal layout test --- . Similarly, users and developers can create other alternative layouts using Just the Docs’ reusable includable components. Default layout and inheritance chain . Under the hood, . | default and minimal inherit from the table_wrappers layout, which wraps all HTML &lt;table&gt; tags with a div .table-wrapper | table_wrappers inherits from vendor/compress, which is a local copy of Anatol Broder’s jekyll-compress-html Jekyll plugin | . Note that as of now, minimal and default have no inheritance relationship. Overridden default Jekyll layouts . By default, Jekyll (and its default theme minima) provide the about, home, page, and post layouts. In Just the Docs, we override all of these layouts with the default layout. Each of those layouts is simply: . --- layout: default --- {{ content }} . ",
     "url": "/docs/customization/#custom-layouts-and-includes",
     
     "relUrl": "/docs/customization/#custom-layouts-and-includes"
-  },"91": {
+  },"96": {
     "doc": "日常表現",
     "title": "日常表現",
     "content": " ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/daily-eng/",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/daily-eng/"
-  },"92": {
+  },"97": {
     "doc": "Default layout child page",
     "title": "Default layout child page",
     "content": "This is a child page that uses the same minimal layout as its parent page. ",
     "url": "/docs/layout/minimal/default-child/",
     
     "relUrl": "/docs/layout/minimal/default-child/"
-  },"93": {
+  },"98": {
     "doc": "ベイズ統計",
     "title": "ベイズ統計",
     "content": " ",
     "url": "/index-bayesian",
     
     "relUrl": "/index-bayesian"
-  },"94": {
+  },"99": {
     "doc": "英語",
     "title": "英語",
     "content": " ",
     "url": "/index-end",
     
     "relUrl": "/index-end"
-  },"95": {
+  },"100": {
     "doc": "分析環境構築",
     "title": "分析環境構築",
     "content": ". | 分析環境構築 | . ",
     "url": "/index-env",
     
     "relUrl": "/index-env"
-  },"96": {
+  },"101": {
     "doc": "jekyll",
     "title": "Jekyll",
     "content": " ",
     "url": "/index-jekyll#jekyll",
     
     "relUrl": "/index-jekyll#jekyll"
-  },"97": {
+  },"102": {
     "doc": "jekyll",
     "title": "jekyll",
     "content": " ",
     "url": "/index-jekyll",
     
     "relUrl": "/index-jekyll"
-  },"98": {
+  },"103": {
     "doc": "ネットワーク",
     "title": "ネットワーク",
     "content": " ",
     "url": "/index-network",
     
     "relUrl": "/index-network"
-  },"99": {
+  },"104": {
     "doc": "統計学（頻度論）",
     "title": "統計学（頻度論）",
     "content": ". | 統計学（頻度論） | . ",
     "url": "/index-stats",
     
     "relUrl": "/index-stats"
-  },"100": {
+  },"105": {
     "doc": "Markdown kitchen sink",
     "title": "Header 1",
     "content": "This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere. ",
     "url": "/docs/index-test/#header-1",
     
     "relUrl": "/docs/index-test/#header-1"
-  },"101": {
+  },"106": {
     "doc": "Markdown kitchen sink",
     "title": "Header 2",
     "content": "This is a blockquote following a header. When something is important enough, you do it even if the odds are not in your favor. Header 3 . // Javascript code with syntax highlighting. var fun = function lang(l) { dateformat.i18n = require('./lang/' + l) return true; } . # Ruby code with syntax highlighting GitHubPages::Dependencies.gems.each do |gem, version| s.add_dependency(gem, \"= #{version}\") end . Header 4 with code not transformed . | This is an unordered list following a header. | This is an unordered list following a header. | This is an unordered list following a header. | . Header 5 . | This is an ordered list following a header. | This is an ordered list following a header. | This is an ordered list following a header. | . Header 6 . This is a very long link which wraps and therefore doesn’t overflow even when it comes at the beginning of the line. | This is a very long link which wraps and therefore doesn’t overflow the line when used first in an item in a list. | . | head1 | head two | three | . | ok | good swedish fish | nice | . | out of stock | good and plenty | nice | . | ok | good oreos | hmm | . | ok | good zoute drop | yumm | . There’s a horizontal rule below this. Here is an unordered list: . | Item foo | Item bar | Item baz | Item zip | . And an ordered list: . | Item one | Item two | Item three | Item four | . And an ordered list, continued: . | Item one | Item two | . Some text . | Item three | Item four | . And an ordered list starting from 42: . | Item 42 | Item 43 | Item 44 | . And a nested list: . | level 1 item . | level 2 item | level 2 item . | level 3 item | level 3 item | . | . | level 1 item . | level 2 item | level 2 item | level 2 item | . | level 1 item . | level 2 item | level 2 item | . | level 1 item | . Nesting an ol in ul in an ol . | level 1 item (ul) . | level 2 item (ol) | level 2 item (ol) . | level 3 item (ul) | level 3 item (ul) | . | . | level 1 item (ul) . | level 2 item (ol) | level 2 item (ol) . | level 3 item (ul) | level 3 item (ul) | . | level 4 item (ol) | level 4 item (ol) . | level 3 item (ul) | level 3 item (ul) | . | . | level 1 item (ul) | . And a task list . | Hello, this is a TODO item | Hello, this is another TODO item | Goodbye, this item is done | . Nesting task lists . | level 1 item (task) . | level 2 item (task) | level 2 item (task) | . | level 1 item (task) | level 1 item (task) | . Nesting a ul in a task list . | level 1 item (task) . | level 2 item (ul) | level 2 item (ul) | . | level 1 item (task) | level 1 item (task) | . Nesting a task list in a ul . | level 1 item (ul) . | level 2 item (task) | level 2 item (task) | . | level 1 item (ul) | level 1 item (ul) | . Small image . Large image . “Wroclaw University Library digitizing rare archival texts” by j_cadmus is marked with CC BY 2.0. Labels . I’m a label . blue . green . purple . yellow . red . bold . italic . bold + italic . Definition lists can be used with HTML syntax. Name Godzilla Born 1952 Birthplace Japan Color Green Multiple description terms and values . Term Brief description of Term Longer Term Longer description of Term, possibly more than one line Term First description of Term, possibly more than one line Second description of Term, possibly more than one line . Term1 Term2 Single description of Term1 and Term2, possibly more than one line Term1 Term2 First description of Term1 and Term2, possibly more than one line Second description of Term1 and Term2, possibly more than one line . More code . def dump_args(func): \"This decorator dumps out the arguments passed to a function before calling it\" argnames = func.func_code.co_varnames[:func.func_code.co_argcount] fname = func.func_name def echo_func(*args,**kwargs): print fname, \":\", ', '.join( '%s=%r' % entry for entry in zip(argnames,args) + kwargs.items()) return func(*args, **kwargs) return echo_func @dump_args def f1(a,b,c): print a + b + c f1(1, 2, 3) def precondition(precondition, use_conditions=DEFAULT_ON): return conditions(precondition, None, use_conditions) def postcondition(postcondition, use_conditions=DEFAULT_ON): return conditions(None, postcondition, use_conditions) class conditions(object): __slots__ = ('__precondition', '__postcondition') def __init__(self, pre, post, use_conditions=DEFAULT_ON): if not use_conditions: pre, post = None, None self.__precondition = pre self.__postcondition = post . Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this. Mermaid Diagrams . The following code is displayed as a diagram only when a mermaid key supplied in _config.yml. graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D; . Collapsed Section . The following uses the &lt;details&gt; tag to create a collapsed section. Shopping list (click me!) This is content inside a &lt;details&gt; dropdown. | Apples | Oranges | Milk | . ",
     "url": "/docs/index-test/#header-2",
     
     "relUrl": "/docs/index-test/#header-2"
-  },"102": {
+  },"107": {
     "doc": "Markdown kitchen sink",
     "title": "Markdown kitchen sink",
     "content": "Preview dark color scheme . Text can be bold, italic, or strikethrough. Link to another page. There should be whitespace between paragraphs. There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project. ",
     "url": "/docs/index-test/",
     
     "relUrl": "/docs/index-test/"
-  },"103": {
+  },"108": {
     "doc": "Home",
     "title": "Data Tech Docs",
     "content": "学習記録のまとめ . 個人的な興味で学んだ内容をまとめて公開するサイト。 主に IT・統計・データサイエンス に関することを書く。 . ",
     "url": "/#data-tech-docs",
     
     "relUrl": "/#data-tech-docs"
-  },"104": {
+  },"109": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
     "url": "/",
     
     "relUrl": "/"
-  },"105": {
+  },"110": {
     "doc": "Jekyll で 日本語検索",
     "title": "Jekyll で日本語検索に対応する",
     "content": "本サイトで導入している Jekyll テーマ Just The Docs で、日本語検索ができなかったので対応する。 . ",
-    "url": "/docs/jekyll/js-search-jekyll/#jekyll-%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E6%A4%9C%E7%B4%A2%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B",
+    "url": "/docs/jekyll/ja-search-jekyll/#jekyll-%E3%81%A7%E6%97%A5%E6%9C%AC%E8%AA%9E%E6%A4%9C%E7%B4%A2%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#jekyll-で日本語検索に対応する"
-  },"106": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#jekyll-で日本語検索に対応する"
+  },"111": {
     "doc": "Jekyll で 日本語検索",
     "title": "Step 1.",
     "content": "/assets/js/vendor/ 配下に、以下の js ファイルを設置する。 ※ファイル自体は lunr-languages (GitHub) からコピペで持ってくる。 . lunr.stemmer.support.min.js lunr.ja.min.js tinyseg.js . ",
-    "url": "/docs/jekyll/js-search-jekyll/#step-1",
+    "url": "/docs/jekyll/ja-search-jekyll/#step-1",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#step-1"
-  },"107": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#step-1"
+  },"112": {
     "doc": "Jekyll で 日本語検索",
     "title": "Step 2.",
     "content": "_includes/head_custom.html に以下を記述する。 . {% if site.search_enabled != false %} &lt;script type=\"text/javascript\" src=\"{{ '/assets/js/vendor/lunr.stemmer.support.min.js' | absolute_url }}\"&gt;&lt;/script&gt; &lt;script type=\"text/javascript\" src=\"{{ '/assets/js/vendor/tinyseg.js' | absolute_url }}\"&gt;&lt;/script&gt; &lt;script type=\"text/javascript\" src=\"{{ '/assets/js/vendor/lunr.ja.min.js' | absolute_url }}\"&gt;&lt;/script&gt; {% endif %} . &lt;script&gt; タグの読み込み順序注意！ . ",
-    "url": "/docs/jekyll/js-search-jekyll/#step-2",
+    "url": "/docs/jekyll/ja-search-jekyll/#step-2",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#step-2"
-  },"108": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#step-2"
+  },"113": {
     "doc": "Jekyll で 日本語検索",
     "title": "Step 3.",
     "content": "assets/js/just-the-docs.js にある var index = lunr(function(){ のすぐ下の行に this.use(lunr.ja); を追記する。 以下の感じで： . var index = lunr(function(){ this.use(lunr.ja); // ←これを追記 this.ref('id'); this.field('title', { boost: 200 }); this.field('content', { boost: 2 }); {%- if site.search.rel_url != false %} this.field('relUrl'); . ",
-    "url": "/docs/jekyll/js-search-jekyll/#step-3",
+    "url": "/docs/jekyll/ja-search-jekyll/#step-3",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#step-3"
-  },"109": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#step-3"
+  },"114": {
     "doc": "Jekyll で 日本語検索",
     "title": "出力結果",
     "content": "できた。 . ",
-    "url": "/docs/jekyll/js-search-jekyll/#%E5%87%BA%E5%8A%9B%E7%B5%90%E6%9E%9C",
+    "url": "/docs/jekyll/ja-search-jekyll/#%E5%87%BA%E5%8A%9B%E7%B5%90%E6%9E%9C",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#出力結果"
-  },"110": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#出力結果"
+  },"115": {
     "doc": "Jekyll で 日本語検索",
     "title": "補足",
     "content": "複数言語対応として、こちら の方法を試したが、日本語だとうまくいかず沼った。ロシア語など他の言語ではできるようだが、、 . this.use(lunr.multiLanguage('en', 'ru') ); . どうやら js の既知問題らしい。 . ",
-    "url": "/docs/jekyll/js-search-jekyll/#%E8%A3%9C%E8%B6%B3",
+    "url": "/docs/jekyll/ja-search-jekyll/#%E8%A3%9C%E8%B6%B3",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#補足"
-  },"111": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#補足"
+  },"116": {
     "doc": "Jekyll で 日本語検索",
     "title": "参考",
     "content": ". | jekyll で検索を実装する方法- lunr の日本語対応 | . ",
-    "url": "/docs/jekyll/js-search-jekyll/#%E5%8F%82%E8%80%83",
+    "url": "/docs/jekyll/ja-search-jekyll/#%E5%8F%82%E8%80%83",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/#参考"
-  },"112": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/#参考"
+  },"117": {
     "doc": "Jekyll で 日本語検索",
     "title": "Jekyll で 日本語検索",
     "content": " ",
-    "url": "/docs/jekyll/js-search-jekyll/",
+    "url": "/docs/jekyll/ja-search-jekyll/",
     
-    "relUrl": "/docs/jekyll/js-search-jekyll/"
-  },"113": {
+    "relUrl": "/docs/jekyll/ja-search-jekyll/"
+  },"118": {
     "doc": "Labels",
     "title": "Labels",
     "content": "Use labels as a way to add an additional mark to a section of your docs. Labels come in a few colors. By default, labels will be blue. Default label . Blue label . Stable . New release . Coming soon . Deprecated . Default label {: .label } Blue label {: .label .label-blue } Stable {: .label .label-green } New release {: .label .label-purple } Coming soon {: .label .label-yellow } Deprecated {: .label .label-red } . ",
     "url": "/docs/ui-components/labels/",
     
     "relUrl": "/docs/ui-components/labels/"
-  },"114": {
+  },"119": {
     "doc": "Jekyll で Latex",
     "title": "Jekyll で \\(\\LaTeX\\) を使いたいときの導入方法",
     "content": " ",
     "url": "/docs/jekyll/latex-on-jekyll/#jekyll-%E3%81%A7-latex-%E3%82%92%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#jekyll-で-latex-を使いたいときの導入方法"
-  },"115": {
+  },"120": {
     "doc": "Jekyll で Latex",
     "title": "Step 1.",
     "content": "_layouts/head.html に以下を記述する . &lt;script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"&gt;&lt;/script&gt; . ",
     "url": "/docs/jekyll/latex-on-jekyll/#step-1",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#step-1"
-  },"116": {
+  },"121": {
     "doc": "Jekyll で Latex",
     "title": "Step 2.",
     "content": "markdown に書く . $$E = mc^2$$ . ",
     "url": "/docs/jekyll/latex-on-jekyll/#step-2",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#step-2"
-  },"117": {
+  },"122": {
     "doc": "Jekyll で Latex",
     "title": "出力結果",
     "content": "\\(E = mc^2\\) . ",
     "url": "/docs/jekyll/latex-on-jekyll/#%E5%87%BA%E5%8A%9B%E7%B5%90%E6%9E%9C",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#出力結果"
-  },"118": {
+  },"123": {
     "doc": "Jekyll で Latex",
     "title": "補足",
     "content": "jekyll では maxjax を使わずに KaTex を使った方がいいだの、_config.yml の設定が必要だのいろいろ歴史があったらしいが、現状（※2024年2月現在）は上記の mathjax 3 を使った方法がよさそう。 . ",
     "url": "/docs/jekyll/latex-on-jekyll/#%E8%A3%9C%E8%B6%B3",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#補足"
-  },"119": {
+  },"124": {
     "doc": "Jekyll で Latex",
     "title": "参考",
     "content": ". | How to support latex in GitHub-pages? | . ",
     "url": "/docs/jekyll/latex-on-jekyll/#%E5%8F%82%E8%80%83",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/#参考"
-  },"120": {
+  },"125": {
     "doc": "Jekyll で Latex",
     "title": "Jekyll で Latex",
     "content": " ",
     "url": "/docs/jekyll/latex-on-jekyll/",
     
     "relUrl": "/docs/jekyll/latex-on-jekyll/"
-  },"121": {
+  },"126": {
     "doc": "Layout",
     "title": "Layout Utilities",
     "content": " ",
     "url": "/docs/utilities/layout/#layout-utilities",
     
     "relUrl": "/docs/utilities/layout/#layout-utilities"
-  },"122": {
+  },"127": {
     "doc": "Layout",
     "title": "Table of contents",
     "content": ". | Spacing | Horizontal Alignment | Vertical Alignment | Display | . ",
     "url": "/docs/utilities/layout/#table-of-contents",
     
     "relUrl": "/docs/utilities/layout/#table-of-contents"
-  },"123": {
+  },"128": {
     "doc": "Layout",
     "title": "Spacing",
     "content": "These spacers are available to use for margins and padding with responsive utility classes. Combine these prefixes with a screen size and spacing scale to use them responsively. | Classname prefix | What it does | . | .m- | margin | . | .mx- | margin-left, margin-right | . | .my- | margin top, margin bottom | . | .mt- | margin-top | . | .mr- | margin-right | . | .mb- | margin-bottom | . | .ml- | margin-left | . | Classname prefix | What it does | . | .p- | padding | . | .px- | padding-left, padding-right | . | .py- | padding top, padding bottom | . | .pt- | padding-top | . | .pr- | padding-right | . | .pb- | padding-bottom | . | .pl- | padding-left | . Spacing values are based on a 1rem = 16px spacing scale, broken down into these units: . | Spacer/suffix | Size in rems | Rem converted to px | . | 1 | 0.25rem | 4px | . | 2 | 0.5rem | 8px | . | 3 | 0.75rem | 12px | . | 4 | 1rem | 16px | . | 5 | 1.5rem | 24px | . | 6 | 2rem | 32px | . | 7 | 2.5rem | 40px | . | 8 | 3rem | 48px | . | auto | auto | auto | . Use mx-auto to horizontally center elements. Examples . In Markdown, use the {: } wrapper to apply custom classes: . This paragraph will have a margin bottom of 1rem/16px on large screens. {: .mb-lg-4 } This paragraph will have 2rem/32px of padding on the right and left at all screen sizes. {: .px-6 } . ",
     "url": "/docs/utilities/layout/#spacing",
     
     "relUrl": "/docs/utilities/layout/#spacing"
-  },"124": {
+  },"129": {
     "doc": "Layout",
     "title": "Horizontal Alignment",
     "content": "| Classname | What it does | . | .float-left | float: left | . | .float-right | float: right | . | .flex-justify-start | justify-content: flex-start | . | .flex-justify-end | justify-content: flex-end | . | .flex-justify-between | justify-content: space-between | . | .flex-justify-around | justify-content: space-around | . Note: any of the flex- classes must be used on a parent element that has d-flex applied to it. ",
     "url": "/docs/utilities/layout/#horizontal-alignment",
     
     "relUrl": "/docs/utilities/layout/#horizontal-alignment"
-  },"125": {
+  },"130": {
     "doc": "Layout",
     "title": "Vertical Alignment",
     "content": "| Classname | What it does | . | .v-align-baseline | vertical-align: baseline | . | .v-align-bottom | vertical-align: bottom | . | .v-align-middle | vertical-align: middle | . | .v-align-text-bottom | vertical-align: text-bottom | . | .v-align-text-top | vertical-align: text-top | . | .v-align-top | vertical-align: top | . ",
     "url": "/docs/utilities/layout/#vertical-alignment",
     
     "relUrl": "/docs/utilities/layout/#vertical-alignment"
-  },"126": {
+  },"131": {
     "doc": "Layout",
     "title": "Display",
     "content": "Display classes aid in adapting the layout of the elements on a page: . | Class |   | . | .d-block | display: block | . | .d-flex | display: flex | . | .d-inline | display: inline | . | .d-inline-block | display: inline-block | . | .d-none | display: none | . Use these classes in conjunction with the responsive modifiers. Examples . In Markdown, use the {: } wrapper to apply custom classes: . This button will be hidden until medium screen sizes: [ A button ](#url) {: .d-none .d-md-inline-block } These headings will be `inline-block`: ### heading 3 {: .d-inline-block } ### heading 3 {: .d-inline-block } . ",
     "url": "/docs/utilities/layout/#display",
     
     "relUrl": "/docs/utilities/layout/#display"
-  },"127": {
+  },"132": {
     "doc": "Layout",
     "title": "Layout",
     "content": " ",
     "url": "/docs/utilities/layout/",
     
     "relUrl": "/docs/utilities/layout/"
-  },"128": {
+  },"133": {
     "doc": "Layout",
     "title": "Layout",
     "content": "You specify the layout for a page in its front matter. Just the Docs has a default layout with a sidebar, used for almost all pages in the theme docs, and a minimal layout that omits the sidebar. ",
     "url": "/docs/layout/layout/",
     
     "relUrl": "/docs/layout/layout/"
-  },"129": {
+  },"134": {
     "doc": "Layout",
     "title": "The layout concept",
     "content": "See the Jekyll docs page about layouts for an explanation of the general idea of layouts and how to specify them. You can use Jekyll’s front matter defaults to specify the same layout for many pages. ",
     "url": "/docs/layout/layout/#the-layout-concept",
     
     "relUrl": "/docs/layout/layout/#the-layout-concept"
-  },"130": {
+  },"135": {
     "doc": "Layout",
     "title": "The default layout",
     "content": "This page uses the default layout. It is a responsive layout: on medium and larger width displays, it displays a sidebar, including a navigation panel; on smaller width displays, the sidebar is automatically hidden under a button. Each child (and grandchild) page of a top-level page has so-called breadcrumbs: links to its parent (and grandparent) pages. It shows the breadcrumbs above the main content of the page. Each page that has child pages generally has a list of links to those pages (you can suppress it by has_toc: false in the front matter). It shows the list as a table of contents below the main content. ",
     "url": "/docs/layout/layout/#the-default-layout",
     
     "relUrl": "/docs/layout/layout/#the-default-layout"
-  },"131": {
+  },"136": {
     "doc": "Layout",
     "title": "The minimal layout",
     "content": "A child and grandchild page of this page use the minimal layout. This differs from the default layout by omitting the sidebar – and thereby also the navigation panel. To navigate between pages with the minimal layout, you can use the breadcrumbs and the tables of contents. ",
     "url": "/docs/layout/layout/#the-minimal-layout",
     
     "relUrl": "/docs/layout/layout/#the-minimal-layout"
-  },"132": {
+  },"137": {
     "doc": "Layout",
     "title": "Other layouts",
     "content": "Just the Docs has further layouts: about, home, page, and post. Currently, they are all based on the default layout. See the Jekyll docs about inheritance for how to customize them. ",
     "url": "/docs/layout/layout/#other-layouts",
     
     "relUrl": "/docs/layout/layout/#other-layouts"
-  },"133": {
+  },"138": {
     "doc": "Code with line numbers",
     "title": "Code snippets with line numbers",
     "content": "In prior versions of the docs, we provided “workarounds” to rendering issues arising from code snippets with line numbers. While these seemed to resolve visual layout issues, they did not resolve core issues with Jekyll generating invalid HTML. See the detailed explanation for more information. The default settings for HTML compression are incompatible with the HTML produced by Jekyll for line numbers from highlighted code – both when using Kramdown code fences and when using Liquid highlight tags. To avoid non-conforming HTML and unsatisfactory layout, HTML compression can be turned off by using the following configuration option: . compress_html: ignore: envs: all . When using Kramdown code fences, line numbers are turned on globally by the following configuration option: . kramdown: syntax_highlighter_opts: block: line_numbers: true . Line numbers can then be suppressed locally using Liquid tags (without the linenos option) instead of fences: . {% highlight some_language %} Some code {% endhighlight %} . ",
     "url": "/docs/ui-components/code/line-numbers/#code-snippets-with-line-numbers",
     
     "relUrl": "/docs/ui-components/code/line-numbers/#code-snippets-with-line-numbers"
-  },"134": {
+  },"139": {
     "doc": "Code with line numbers",
     "title": "Detailed Error Explanation",
     "content": "Consider this following code snippet, intended to highlight a simple Ruby program: . {% highlight ruby linenos %} def foo puts 'foo' end {% endhighlight %} . If this is directly placed within a file processed by Jekyll (via Just the Docs, with HTML compression enabled), the following markup will be generated: . &lt;figure class=\"highlight\"&gt;&gt;&lt;code class=\"language-ruby\" data-lang=\"ruby\"&gt;&lt;div class=\"table-wrapper\"&gt;&lt;table class=\"rouge-table\"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=\"gutter gl\"&gt;&lt;pre class=\"lineno\"&gt;1 2 3 &lt;/pre&gt;&lt;td class=\"code\"&gt;&lt;pre&gt;&lt;span class=\"k\"&gt;def&lt;/span&gt; &lt;span class=\"nf\"&gt;foo&lt;/span&gt; &lt;span class=\"nb\"&gt;puts&lt;/span&gt; &lt;span class=\"s1\"&gt;'foo'&lt;/span&gt; &lt;span class=\"k\"&gt;end&lt;/span&gt; &lt;/pre&gt;&lt;/figure&gt; . This HTML is invalid; in particular, there are two issues: . | there are many missing closing tags, and a superfluous &gt;, which produce visually garbled output | a &lt;table&gt; is placed within a &lt;code&gt; element, which is syntactically invalid HTML (but is often allowed by browsers) | . To emphasize this first difference, here is the same markup output, indented by tag: . &lt;figure class=\"highlight\"&gt; &gt; &lt;code class=\"language-ruby\" data-lang=\"ruby\"&gt; &lt;div class=\"table-wrapper\"&gt; &lt;table class=\"rouge-table\"&gt; &lt;tbody&gt; &lt;tr&gt; &lt;td class=\"gutter gl\"&gt; &lt;pre class=\"lineno\"&gt; 1 2 3 &lt;/pre&gt; &lt;td class=\"code\"&gt; &lt;pre&gt; &lt;span class=\"k\"&gt;def&lt;/span&gt; &lt;span class=\"nf\"&gt;foo&lt;/span&gt; &lt;span class=\"nb\"&gt;puts&lt;/span&gt; &lt;span class=\"s1\"&gt;'foo'&lt;/span&gt; &lt;span class=\"k\"&gt;end&lt;/span&gt; &lt;/pre&gt; &lt;/figure&gt; . In order, there are missing &lt;/td&gt;, &lt;/td&gt;, &lt;/tr&gt;, &lt;/tbody&gt;, &lt;/table&gt;, &lt;/div&gt;, and &lt;/code&gt; tags. As a result, the following elements of the page - including the site footer - become visually garbled as browsers attempt to recover gracefully. Prior workarounds we suggested (such as Dmitry Hrabrov’s in jekyll-compress-html#71) resolve the missing tag problem. However, they still place a &lt;table&gt; within a &lt;code&gt; element. The HTML spec normatively states that &lt;code&gt; elements should only contain “phrasing content”, which does not include &lt;table&gt; (spec ref). To avoid incorrectly rendered HTML, the previously-suggested workaround using the current version of _includes/fix_linenos.html should not be used! . ",
     "url": "/docs/ui-components/code/line-numbers/#detailed-error-explanation",
     
     "relUrl": "/docs/ui-components/code/line-numbers/#detailed-error-explanation"
-  },"135": {
+  },"140": {
     "doc": "Code with line numbers",
     "title": "Code with line numbers",
     "content": " ",
     "url": "/docs/ui-components/code/line-numbers/",
     
     "relUrl": "/docs/ui-components/code/line-numbers/"
-  },"136": {
+  },"141": {
     "doc": "Lists",
     "title": "Lists",
     "content": " ",
     "url": "/docs/ui-components/lists/",
     
     "relUrl": "/docs/ui-components/lists/"
-  },"137": {
+  },"142": {
     "doc": "Lists",
     "title": "Table of contents",
     "content": ". | Unordered list | Ordered list | Task list | Definition list | . Most lists can be rendered with pure Markdown. ",
     "url": "/docs/ui-components/lists/#table-of-contents",
     
     "relUrl": "/docs/ui-components/lists/#table-of-contents"
-  },"138": {
+  },"143": {
     "doc": "Lists",
     "title": "Unordered list",
     "content": ". | Item 1 | Item 2 | Item 3 | . or . | Item 1 | Item 2 | Item 3 | . - Item 1 - Item 2 - Item 3 _or_ * Item 1 * Item 2 * Item 3 . ",
     "url": "/docs/ui-components/lists/#unordered-list",
     
     "relUrl": "/docs/ui-components/lists/#unordered-list"
-  },"139": {
+  },"144": {
     "doc": "Lists",
     "title": "Ordered list",
     "content": ". | Item 1 | Item 2 | Item 3 | . 1. Item 1 1. Item 2 1. Item 3 . ",
     "url": "/docs/ui-components/lists/#ordered-list",
     
     "relUrl": "/docs/ui-components/lists/#ordered-list"
-  },"140": {
+  },"145": {
     "doc": "Lists",
     "title": "Task list",
     "content": ". | hello, this is a todo item | hello, this is another todo item | goodbye, this item is done | . - [ ] hello, this is a todo item - [ ] hello, this is another todo item - [x] goodbye, this item is done . ",
     "url": "/docs/ui-components/lists/#task-list",
     
     "relUrl": "/docs/ui-components/lists/#task-list"
-  },"141": {
+  },"146": {
     "doc": "Lists",
     "title": "Definition list",
     "content": "Definition lists require HTML syntax and aren’t supported with the GitHub Flavored Markdown compiler. Name Godzilla Born 1952 Birthplace Japan Color Green &lt;dl&gt; &lt;dt&gt;Name&lt;/dt&gt; &lt;dd&gt;Godzilla&lt;/dd&gt; &lt;dt&gt;Born&lt;/dt&gt; &lt;dd&gt;1952&lt;/dd&gt; &lt;dt&gt;Birthplace&lt;/dt&gt; &lt;dd&gt;Japan&lt;/dd&gt; &lt;dt&gt;Color&lt;/dt&gt; &lt;dd&gt;Green&lt;/dd&gt; &lt;/dl&gt; . ",
     "url": "/docs/ui-components/lists/#definition-list",
     
     "relUrl": "/docs/ui-components/lists/#definition-list"
-  },"142": {
+  },"147": {
     "doc": "Minimal layout child page",
     "title": "Minimal layout child page",
     "content": "This is a child page that uses the same minimal layout as its parent page. ",
     "url": "/docs/layout/minimal/minimal-child/",
     
     "relUrl": "/docs/layout/minimal/minimal-child/"
-  },"143": {
+  },"148": {
     "doc": "Minimal layout test",
     "title": "Minimal layout test",
     "content": "Return to main website. This page demonstrates the packaged minimal layout, which does not render the sidebar or header. It can be used for standalone pages. It is also an example of using the new modular site components to define custom layouts; see “Custom layouts and includes” in the customization docs for more information. ",
     "url": "/docs/minimal-test/",
     
     "relUrl": "/docs/minimal-test/"
-  },"144": {
+  },"149": {
     "doc": "A minimal layout page",
     "title": "A minimal layout page",
     "content": "This page illustrates the built-in layout minimal. One of its child pages also uses the minimal layout; the other child pages uses the default layout. ",
     "url": "/docs/layout/minimal/minimal/",
     
     "relUrl": "/docs/layout/minimal/minimal/"
-  },"145": {
+  },"150": {
     "doc": "Navigation Structure",
     "title": "Navigation Structure",
     "content": ". | Main navigation | Ordering pages | Excluding pages | Pages with children . | Child pages | Ordering child pages | Auto-generating Table of Contents | Children with children | . | Grouping pages with collections | Auxiliary Links | External Navigation Links . | Opening external links in a new tab | . | In-page navigation with Table of Contents . | Collapsible Table of Contents | . | . ",
     "url": "/docs/navigation-structure/",
     
     "relUrl": "/docs/navigation-structure/"
-  },"146": {
+  },"151": {
     "doc": "Navigation Structure",
     "title": "Main navigation",
     "content": "The main navigation for your Just the Docs site is on the left side of the page on large screens and on the top (behind a tap) on small screens. The main navigation can be structured to accommodate a multi-level menu system (pages with children and grandchildren). By default, all pages will appear as top level pages in the main nav unless a parent page is defined (see Pages with Children). ",
     "url": "/docs/navigation-structure/#main-navigation",
     
     "relUrl": "/docs/navigation-structure/#main-navigation"
-  },"147": {
+  },"152": {
     "doc": "Navigation Structure",
     "title": "Ordering pages",
     "content": "To specify a page order, you can use the nav_order parameter in your pages’ YAML front matter. Example (ordering pages) . --- layout: default title: Customization nav_order: 4 --- . The parameter values determine the order of the top-level pages, and of child pages with the same parent. You can reuse the same parameter values (e.g., integers starting from 1) for the child pages of different parents. The parameter values can be numbers (integers, floats) and/or strings. Pages with numerical nav_order parameters always come before those with string nav_order parameters. When you omit nav_order parameters, they default to the titles of the pages. If you want to make the page order independent of the page titles, you can set explicit nav_order parameters on all pages. All pages with explicit nav_order parameters come before all pages ordered by their title values. By default, all Capital letters come before all lowercase letters; you can add nav_sort: case_insensitive in the configuration file to ignore the case. Enclosing strings in (single or double) quotation marks is optional. Numeric values are not enclosed in quotation marks, e.g., 42, -1.0; numbers in quotation marks are lexicographically ordered, so \"10\" comes before \"2\", for example. ",
     "url": "/docs/navigation-structure/#ordering-pages",
     
     "relUrl": "/docs/navigation-structure/#ordering-pages"
-  },"148": {
+  },"153": {
     "doc": "Navigation Structure",
     "title": "Excluding pages",
     "content": "For specific pages that you do not wish to include in the main navigation, e.g. a 404 page or a landing page, use the nav_exclude: true parameter in the YAML front matter for that page. Example (excluding pages) . --- layout: default title: 404 nav_exclude: true --- . The nav_exclude parameter does not affect the auto-generating list of child pages, which you can use to access pages excluded from the main navigation. Pages with no title are automatically excluded from the main navigation. ",
     "url": "/docs/navigation-structure/#excluding-pages",
     
     "relUrl": "/docs/navigation-structure/#excluding-pages"
-  },"149": {
+  },"154": {
     "doc": "Navigation Structure",
     "title": "Pages with children",
     "content": "Sometimes you will want to create a page with many children (a section). First, it is recommended that you keep pages that are related in a directory together… For example, in these docs, we keep all of the written documentation in the ./docs directory and each of the sections in subdirectories like ./docs/ui-components and ./docs/utilities. This gives us an organization like: . +-- .. |-- (Jekyll files) |-- docs |-- ui-components | |-- index.md (parent page) | |-- buttons.md | |-- code.md | |-- labels.md | |-- tables.md | +-- typography.md | |-- utilities | |-- index.md (parent page) | |-- color.md | |-- layout.md | |-- responsive-modifiers.md | +-- typography.md | |-- (other md files, pages with no children) | +-- .. |-- (Jekyll files) +-- .. On the parent pages, add this YAML front matter parameter: . | has_children: true (tells us that this is a parent page) | . Example (parent pages) . --- layout: default title: UI Components nav_order: 2 has_children: true --- . Here we’re setting up the UI Components landing page that is available at /docs/ui-components, which has children and is ordered second in the main nav. Child pages . On child pages, simply set the parent: YAML front matter to whatever the parent’s page title is and set a nav order (this number is now scoped within the section). Example (child pages) . --- layout: default title: Buttons parent: UI Components nav_order: 2 --- . The Buttons page appears as a child of UI Components and appears second in the UI Components section. Ordering child pages . New (v0.4.0) . You can optionally add the following to the YAML front matter to reverse the default sort order of child pages: . | child_nav_order: reversed | . Example (ordering child pages) . --- layout: default title: Reversed Child Pages child_nav_order: reversed --- . Auto-generating Table of Contents . By default, all pages with children will automatically append a Table of Contents which lists the child pages after the parent page’s content. To disable this auto Table of Contents, set has_toc: false in the parent page’s YAML front matter. Example (auto-generating Table of Contents) . --- layout: default title: UI Components nav_order: 2 has_children: true has_toc: false --- . Children with children . Child pages can also have children (grandchildren). This is achieved by using a similar pattern on the child and grandchild pages. | Add the has_children attribute to the child | Add the parent and grand_parent attribute to the grandchild | . Example (children within children) . --- layout: default title: Buttons parent: UI Components nav_order: 2 has_children: true --- . --- layout: default title: Buttons Child Page parent: Buttons grand_parent: UI Components nav_order: 1 --- . This would create the following navigation structure: . +-- .. |-- UI Components |-- .. | |-- Buttons | |-- Button Child Page | |-- .. | +-- .. Currently, the navigation structure is limited to 3 levels: grandchild pages cannot themselves have child pages. ",
     "url": "/docs/navigation-structure/#pages-with-children",
     
     "relUrl": "/docs/navigation-structure/#pages-with-children"
-  },"150": {
+  },"155": {
     "doc": "Navigation Structure",
     "title": "Grouping pages with collections",
     "content": "Pages can also be grouped together by using Jekyll’s and Just the Docs’s collections feature. In contrast to using pages with children, pages grouped by collection are grouped by a shared header (the name of the collection) instead of a page. The nav_fold configuration option works for collection-grouped pages. For more information, please refer to the collections documentation. Example (grouping by collection) . The following example sets up two collections, collection-one and collection-two: . | any document placed within _collection-1/ will be grouped under the Collection One header by default. Since nav_fold is set to true, the pages will be folded by default. | any document placed within _collection-2/ will be grouped under the Collection Two header by default. Since nav_fold is set to false, the pages will be expanded by default. | . _config.yml: collections: collection-one: permalink: \"/:collection/:path/\" output: true collection-two: permalink: \"/:collection/:path/\" output: true just_the_docs: collections: collection-one: name: Collection One nav_fold: true collection-two: name: Collection Two nav_fold: false . ",
     "url": "/docs/navigation-structure/#grouping-pages-with-collections",
     
     "relUrl": "/docs/navigation-structure/#grouping-pages-with-collections"
-  },"151": {
+  },"156": {
     "doc": "Navigation Structure",
     "title": "Auxiliary Links",
     "content": "To add auxiliary links to your site (in the upper right on all pages), add it to the aux_links configuration option in your site’s _config.yml file. Example (auxiliary links) . # Aux links for the upper right navigation aux_links: \"Just the Docs on GitHub\": - \"//github.com/just-the-docs/just-the-docs\" . ",
     "url": "/docs/navigation-structure/#auxiliary-links",
     
     "relUrl": "/docs/navigation-structure/#auxiliary-links"
-  },"152": {
+  },"157": {
     "doc": "Navigation Structure",
     "title": "External Navigation Links",
     "content": "New (v0.4.0) . To add external links to the navigation, add them to the nav_external_links configuration option in your site’s _config.yml file. External links will appear in the navigation after the links to ordinary pages, but before any collections. Example (external navigation links) . # External navigation links nav_external_links: - title: Just the Docs on GitHub url: https://github.com/just-the-docs/just-the-docs hide_icon: false # set to true to hide the external link icon - defaults to false opens_in_new_tab: false # set to true to open this link in a new tab - defaults to false . Opening external links in a new tab . New (unreleased) . The external links are decorated by an icon, which distinguishes them from internal links. You can suppress the icon by setting hide_icon: true. By default, external links are not opened in a new tab. However, this can be enabled by: . | setting opens_in_new_tab: true in the link’s configuration object | setting the configuration option nav_external_links_new_tab: true in _config.yml | . When they conflict, opens_in_new_tab takes precedence. ",
     "url": "/docs/navigation-structure/#external-navigation-links",
     
     "relUrl": "/docs/navigation-structure/#external-navigation-links"
-  },"153": {
+  },"158": {
     "doc": "Navigation Structure",
     "title": "In-page navigation with Table of Contents",
     "content": "To generate a Table of Contents on your docs pages, you can use the {:toc} method from Kramdown, immediately after an &lt;ol&gt; in Markdown. This will automatically generate an ordered list of anchor links to various sections of the page based on headings and heading levels. There may be occasions where you’re using a heading and you don’t want it to show up in the TOC, so to skip a particular heading use the {: .no_toc } CSS class. Example (in-page navigation with Table of Contents) . # Navigation Structure {: .no_toc } ## {: .no_toc .text-delta } 1. TOC {:toc} . This example skips the page name heading (#) from the TOC, as well as the heading for the Table of Contents itself (##) because it is redundant, followed by the table of contents itself. To get an unordered list, replace 1. TOC above by - TOC. Collapsible Table of Contents . The Table of Contents can be made collapsible using the &lt;details&gt; and &lt;summary&gt; elements, as in the following example. The attribute open (expands the Table of Contents by default) and the styling with {: .text-delta } are optional. &lt;details open markdown=\"block\"&gt; &lt;summary&gt; &lt;/summary&gt; {: .text-delta } 1. TOC {:toc} &lt;/details&gt; . The result is shown at the top of this page ({:toc} can be used only once on each page). ",
     "url": "/docs/navigation-structure/#in-page-navigation-with-table-of-contents",
     
     "relUrl": "/docs/navigation-structure/#in-page-navigation-with-table-of-contents"
-  },"154": {
+  },"159": {
     "doc": "Responsive Modifiers",
     "title": "Responsive modifiers",
     "content": "Just the Docs spacing works in conjunction with a variety of modifiers that allow you to target specific screen sizes responsively. Use these in conjunction with spacing and display prefix and suffix classes. | Modifier | Screen size | . | (none) | All screens until the next modifier | . | xs | 320px (20rem) and up | . | sm | 500px (31.25rem) and up | . | md | 740px (46.25rem) and up | . | lg | 1120px (70rem) and up | . | xl | 1400px (87.5rem) and up | . ",
     "url": "/docs/utilities/responsive-modifiers/#responsive-modifiers",
     
     "relUrl": "/docs/utilities/responsive-modifiers/#responsive-modifiers"
-  },"155": {
+  },"160": {
     "doc": "Responsive Modifiers",
     "title": "Responsive Modifiers",
     "content": " ",
     "url": "/docs/utilities/responsive-modifiers/",
     
     "relUrl": "/docs/utilities/responsive-modifiers/"
-  },"156": {
+  },"161": {
     "doc": "ネットワーク 子ページサンプル",
     "title": "子 ネットワーク について",
     "content": " ",
     "url": "/docs/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF/sample-network-child/#%E5%AD%90-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
     
     "relUrl": "/docs/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF/sample-network-child/#子-ネットワーク-について"
-  },"157": {
+  },"162": {
     "doc": "ネットワーク 子ページサンプル",
     "title": "ネットワーク 子ページサンプル",
     "content": " ",
     "url": "/docs/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF/sample-network-child/",
     
     "relUrl": "/docs/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF/sample-network-child/"
-  },"158": {
+  },"163": {
     "doc": "Search",
     "title": "Search",
     "content": " ",
     "url": "/docs/search/",
     
     "relUrl": "/docs/search/"
-  },"159": {
+  },"164": {
     "doc": "Search",
     "title": "Table of contents",
     "content": ". | Enable search in configuration . | Search granularity | Search previews | Search tokenizer | Display URL in search results | Display search button | . | Hiding pages from search . | Example | . | Generate search index when used as a gem | Custom content for search index . | Example | . | . Just the Docs uses lunr.js to add a client-side search interface powered by a JSON index that Jekyll generates. All search results are shown in an auto-complete style interface (there is no search results page). By default, all generated HTML pages are indexed using the following data points: . | Page title | Page content | Page URL | . ",
     "url": "/docs/search/#table-of-contents",
     
     "relUrl": "/docs/search/#table-of-contents"
-  },"160": {
+  },"165": {
     "doc": "Search",
     "title": "Enable search in configuration",
     "content": "In your site’s _config.yml, enable search: . # Enable or disable the site search # Supports true (default) or false search_enabled: true . Search granularity . Pages are split into sections that can be searched individually. The sections are defined by the headings on the page. Each section is displayed in a separate search result. # Split pages into sections that can be searched individually # Supports 1 - 6, default: 2 search.heading_level: 2 . Search previews . A search result can contain previews that show where the search words are found in the specific section. # Maximum amount of previews per search result # Default: 3 search.previews: 3 # Maximum amount of words to display before a matched word in the preview # Default: 5 search.preview_words_before: 5 # Maximum amount of words to display after a matched word in the preview # Default: 10 search.preview_words_after: 10 . Search tokenizer . The default is for hyphens to separate tokens in search terms: gem-based is equivalent to gem based, matching either word. To allow search for hyphenated words: . # Set the search token separator # Default: /[\\s\\-/]+/ # Example: enable support for hyphenated search words search.tokenizer_separator: /[\\s/]+/ . Display URL in search results . # Display the relative url in search results # Supports true (default) or false search.rel_url: false . Display search button . The search button displays in the bottom right corner of the screen and triggers the search input when clicked. # Enable or disable the search button that appears in the bottom right corner of every page # Supports true or false (default) search.button: true . ",
     "url": "/docs/search/#enable-search-in-configuration",
     
     "relUrl": "/docs/search/#enable-search-in-configuration"
-  },"161": {
+  },"166": {
     "doc": "Search",
     "title": "Hiding pages from search",
     "content": "Sometimes you might have a page that you don’t want to be indexed for the search nor to show up in search results, e.g., a 404 page. To exclude a page from search, add the search_exclude: true parameter to the page’s YAML front matter: . Example . --- layout: default title: Page not found nav_exclude: true search_exclude: true --- . ",
     "url": "/docs/search/#hiding-pages-from-search",
     
     "relUrl": "/docs/search/#hiding-pages-from-search"
-  },"162": {
+  },"167": {
     "doc": "Search",
     "title": "Generate search index when used as a gem",
     "content": "If you use Just the Docs as a remote theme, you do not need the following steps. If you use the theme as a gem, you must initialize the search by running this rake command that comes with just-the-docs: . $ bundle exec just-the-docs rake search:init . This command creates the assets/js/zzzz-search-data.json file that Jekyll uses to create your search index. Alternatively, you can create the file manually with this content. ",
     "url": "/docs/search/#generate-search-index-when-used-as-a-gem",
     
     "relUrl": "/docs/search/#generate-search-index-when-used-as-a-gem"
-  },"163": {
+  },"168": {
     "doc": "Search",
     "title": "Custom content for search index",
     "content": "New (v0.4.0) . Advanced . By default, the search feature indexes a page’s .content, .title, and some headers within the .content. Other data (e.g. front matter, files in _data and assets) is not indexed. Users can customize what is indexed. Customizing search indices is an advanced feature that requires Javascript and Liquid knowledge. | When Just the Docs is a local or gem theme, ensure assets/js/zzzz-search-data.json is up-to-date with Generate search index when used as a gem. | Add a new file named _includes/lunr/custom-data.json. Insert custom Liquid code that reads your data (e.g. the page object at include.page) then generates custom Javascript fields that hold the custom data you want to index. Verify these fields in the generated assets/js/search-data.json. | Add a new file named _includes/lunr/custom-index.js. Insert custom Javascript code that reads your custom Javascript fields and inserts them into the search index. You may want to inspect assets/js/just-the-docs.js to better understand the code. | . Example . This example adds front matter usage and examples fields to the search index. _includes/lunr/custom-data.json custom code reads the page usage and examples fields, normalizes the text, and writes the text to custom Javascript myusage and myexamples fields. Javascript fields are similar yet not the same as JSON. jsonify will probably work for most scenarios. {%- capture newline %} {% endcapture -%} \"myusage\": {{ include.page.usage | markdownify | replace:newline,' ' | strip_html | normalize_whitespace | strip | jsonify }}, \"myexamples\": {{ include.page.examples | markdownify | replace:newline,' ' | strip_html | normalize_whitespace | strip | jsonify }}, . _includes/lunr/custom-index.js custom code is inserted into the Javascript loop of assets/js/just-the-docs.js. All custom Javascript fields are accessed as fields of docs[i] such as docs[i].myusage. Finally, append your custom fields on to the already existing docs[i].content. const content_to_merge = [docs[i].content, docs[i].myusage, docs[i].myexamples]; docs[i].content = content_to_merge.join(' '); . ",
     "url": "/docs/search/#custom-content-for-search-index",
     
     "relUrl": "/docs/search/#custom-content-for-search-index"
-  },"164": {
+  },"169": {
     "doc": "Second To None",
     "title": "表現",
     "content": "second to none 直訳：誰に対しても2番手にならない → 誰にも劣らない、最高の、一番良い、一番悪い、一番早い etc. ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#%E8%A1%A8%E7%8F%BE",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#表現"
-  },"165": {
+  },"170": {
     "doc": "Second To None",
     "title": "例文",
     "content": "“The quality of their customer service is second to none. I’ve never had a better experience.” 「彼らのカスタマーサービスの質は誰にも劣りません。これまでで最高の経験でした。」 . “In terms of reliability, this brand is second to none. You won’t regret your purchase.” 「信頼性の面でこのブランドは誰にも劣りません。購入を後悔することはないでしょう。」 . “Her dedication to her work is second to none; she always goes above and beyond.” 「彼女の仕事に対する献身は誰にも劣りません。いつも一歩先を行っています。」 . ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#%E4%BE%8B%E6%96%87",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#例文"
-  },"166": {
+  },"171": {
     "doc": "Second To None",
     "title": "Second To None",
     "content": " ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/"
-  },"167": {
+  },"172": {
     "doc": "Tables",
     "title": "Tables",
     "content": "Tables are responsive by default, allowing wide tables to have a horizontal scroll to access columns outside of the normal viewport. | head1 | head two | three | . | ok | good swedish fish | nice | . | out of stock | good and plenty | nice | . | ok | good oreos | hmm | . | ok | good zoute drop | yumm | . | head1 | head two | three |:-------------|:------------------|:------| ok | good swedish fish | nice | out of stock | good and plenty | nice | ok | good `oreos` | hmm | ok | good `zoute` drop | yumm | . ",
     "url": "/docs/ui-components/tables/",
     
     "relUrl": "/docs/ui-components/tables/"
-  },"168": {
+  },"173": {
     "doc": "IT技術表現",
     "title": "IT技術表現",
     "content": " ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/tech-eng/",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/tech-eng/"
-  },"169": {
+  },"174": {
     "doc": "Typography",
     "title": "Typography Utilities",
     "content": " ",
     "url": "/docs/utilities/typography/#typography-utilities",
     
     "relUrl": "/docs/utilities/typography/#typography-utilities"
-  },"170": {
+  },"175": {
     "doc": "Typography",
     "title": "Table of contents",
     "content": ". | Font size | Font weight | Line height | Text justification | . ",
     "url": "/docs/utilities/typography/#table-of-contents",
     
     "relUrl": "/docs/utilities/typography/#table-of-contents"
-  },"171": {
+  },"176": {
     "doc": "Typography",
     "title": "Font size",
     "content": "Use the .fs-1 - .fs-10 to set an explicit font-size. | Class | Small screen size font-size | Large screen size font-size | . | .fs-1 | 9px | 10px | . | .fs-2 | 11px | 12px | . | .fs-3 | 12px | 14px | . | .fs-4 | 14px | 16px | . | .fs-5 | 16px | 18px | . | .fs-6 | 18px | 24px | . | .fs-7 | 24px | 32px | . | .fs-8 | 32px | 38px | . | .fs-9 | 38px | 42px | . | .fs-10 | 42px | 48px | . Font size 1 . Font size 2 . Font size 3 . Font size 4 . Font size 5 . Font size 6 . Font size 7 . Font size 8 . Font size 9 . Font size 10 . In Markdown, use the `{: }` wrapper to apply custom classes: Font size 1 {: .fs-1 } Font size 2 {: .fs-2 } Font size 3 {: .fs-3 } Font size 4 {: .fs-4 } Font size 5 {: .fs-5 } Font size 6 {: .fs-6 } Font size 7 {: .fs-7 } Font size 8 {: .fs-8 } Font size 9 {: .fs-9 } Font size 10 {: .fs-10 } . ",
     "url": "/docs/utilities/typography/#font-size",
     
     "relUrl": "/docs/utilities/typography/#font-size"
-  },"172": {
+  },"177": {
     "doc": "Typography",
     "title": "Font weight",
     "content": "Use the .fw-300 - .fw-700 to set an explicit font-weight. Font weight 300 . Font weight 400 . Font weight 500 . Font weight 700 . In Markdown, use the `{: }` wrapper to apply custom classes: Font weight 300 {: .fw-300 } Font weight 400 {: .fw-400 } Font weight 500 {: .fw-500 } Font weight 700 {: .fw-700 } . ",
     "url": "/docs/utilities/typography/#font-weight",
     
     "relUrl": "/docs/utilities/typography/#font-weight"
-  },"173": {
+  },"178": {
     "doc": "Typography",
     "title": "Line height",
     "content": "Use the lh- classes to explicitly apply line height to text. | Class | line-height value | Notes | . | .lh-0 | 0 |   | . | .lh-tight | 1.1 | Default for headings | . | .lh-default | 1.4 | Default for body (paragraphs) | . No Line height No Line height . Tight line height Tight line height . Default line height Default line height . In Markdown, use the `{: }` wrapper to apply custom classes: No Line height No Line height {: .lh-0 } Tight line height Tight line height {: .lh-tight } Default line height Default line height {: .fh-default } . ",
     "url": "/docs/utilities/typography/#line-height",
     
     "relUrl": "/docs/utilities/typography/#line-height"
-  },"174": {
+  },"179": {
     "doc": "Typography",
     "title": "Text justification",
     "content": "By default text is justified left. Use these text- classes to override settings: . | Class | What it does | . | .text-left | text-align: left | . | .text-right | text-align: right | . | .text-center | text-align: center | . ",
     "url": "/docs/utilities/typography/#text-justification",
     
     "relUrl": "/docs/utilities/typography/#text-justification"
-  },"175": {
+  },"180": {
     "doc": "Typography",
     "title": "Typography",
     "content": " ",
     "url": "/docs/utilities/typography/",
     
     "relUrl": "/docs/utilities/typography/"
-  },"176": {
+  },"181": {
     "doc": "Typography",
     "title": "Typography",
     "content": " ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"177": {
+  },"182": {
     "doc": "Typography",
     "title": "Table of contents",
     "content": ". | Font stack | Responsive type scale | Headings | Body text | Inline elements | Typographic Utilities | . ",
     "url": "/docs/ui-components/typography/#table-of-contents",
     
     "relUrl": "/docs/ui-components/typography/#table-of-contents"
-  },"178": {
+  },"183": {
     "doc": "Typography",
     "title": "Font stack",
     "content": "By default, Just the Docs uses a native system font stack for sans-serif fonts: . system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Segoe UI Emoji\" . ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz . For monospace type, like code snippets or the &lt;pre&gt; element, Just the Docs uses a native system font stack for monospace fonts: . \"SFMono-Regular\", Menlo, Consolas, Monospace . ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz . ",
     "url": "/docs/ui-components/typography/#font-stack",
     
     "relUrl": "/docs/ui-components/typography/#font-stack"
-  },"179": {
+  },"184": {
     "doc": "Typography",
     "title": "Responsive type scale",
     "content": "Just the Docs uses a responsive type scale that shifts depending on the viewport size. | Selector | Small screen size font-size | Large screen size font-size | . | h1, .text-alpha | 32px | 36px | . | h2, .text-beta | 18px | 24px | . | h3, .text-gamma | 16px | 18px | . | h4, .text-delta | 14px | 16px | . | h5, .text-epsilon | 16px | 18px | . | h6, .text-zeta | 18px | 24px | . | body | 14px | 16px | . ",
     "url": "/docs/ui-components/typography/#responsive-type-scale",
     
     "relUrl": "/docs/ui-components/typography/#responsive-type-scale"
-  },"180": {
+  },"185": {
     "doc": "Typography",
     "title": "Headings",
     "content": "Headings are rendered like this: . ",
     "url": "/docs/ui-components/typography/#headings",
     
     "relUrl": "/docs/ui-components/typography/#headings"
-  },"181": {
+  },"186": {
     "doc": "Typography",
     "title": "Heading 1",
     "content": " ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"182": {
+  },"187": {
     "doc": "Typography",
     "title": "Heading 2",
     "content": "Heading 3 . Heading 4 . Heading 5 . Heading 6 . # Heading 1 ## Heading 2 ### Heading 3 #### Heading 4 ##### Heading 5 ###### Heading 6 . ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"183": {
+  },"188": {
     "doc": "Typography",
     "title": "Body text",
     "content": "Default body text is rendered like this: . Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
     "url": "/docs/ui-components/typography/#body-text",
     
     "relUrl": "/docs/ui-components/typography/#body-text"
-  },"184": {
+  },"189": {
     "doc": "Typography",
     "title": "Inline elements",
     "content": "Text can be bold, italic, or strikethrough. Link to another page. Text can be **bold**, _italic_, or ~~strikethrough~~. [Link to another page](//). ",
     "url": "/docs/ui-components/typography/#inline-elements",
     
     "relUrl": "/docs/ui-components/typography/#inline-elements"
-  },"185": {
+  },"190": {
     "doc": "Typography",
     "title": "Typographic Utilities",
     "content": "There are a number of specific typographic CSS classes that allow you to override default styling for font size, font weight, line height, and capitalization. View typography utilities . ",
     "url": "/docs/ui-components/typography/#typographic-utilities",
     
     "relUrl": "/docs/ui-components/typography/#typographic-utilities"
-  },"186": {
+  },"191": {
     "doc": "UI Components",
     "title": "UI Components",
     "content": "To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default Markdown elements with few additional CSS classes needed. ",
     "url": "/docs/ui-components",
     
     "relUrl": "/docs/ui-components"
-  },"187": {
+  },"192": {
     "doc": "Utilities",
     "title": "Utilities",
     "content": "CSS utility classes come in handy when you want to override default styles to create additional whitespace (margins/padding), correct unexpected shifts in font size or weight, add color, or hide (or show) something at a specific screen size. ",

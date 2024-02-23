@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Jekyll で 日本語検索
+description: "Jelyll で日本語検索する方法について"
 nav_order: 2
 parent: jekyll
 # has_children: true
@@ -50,7 +51,7 @@ tinyseg.js
 
 ## 出力結果
 できた。
-![result image](/tech-docs/assets/images/ja-search-results.png)
+![result image](/assets/images/post-imgs/jekyll/ja-search-results.png)
 
 ## 補足
 複数言語対応として、[こちら](https://github.com/just-the-docs/just-the-docs/issues/59#issuecomment-1807080785) の方法を試したが、日本語だとうまくいかず沼った。ロシア語など他の言語ではできるようだが、、
