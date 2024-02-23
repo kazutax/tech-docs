@@ -196,7 +196,7 @@ veiw_pi(pi_0)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_0](/assets/images/post-imgs/bayesian/bayes_estimation_001.png)
+![veiw_pi_0](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_001.png)
 
 
 この事前分布に対して、「1回目に表が出た」という観測データを取り込む。
@@ -219,7 +219,7 @@ veiw_pi(pi_1)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_1](/assets/images/post-imgs/bayesian/bayes_estimation_002.png)
+![veiw_pi_1](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_002.png)
 
 さらに、「2回目に表が出た」という事象を \\( D_2 \\) とすると、1回目と同様に、尤度は \\( f(表\|\theta) = \theta \\) で示されるため、2回目の事後分布を1回目の事前分布に掛け合わせて、
 
@@ -238,7 +238,7 @@ veiw_pi(pi_2)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_2](/assets/images/post-imgs/bayesian/bayes_estimation_003.png)
+![veiw_pi_2](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_003.png)
 
 
 このように、事後分布となった結果を事前分布において、新たなデータを取り込んで次の事後分布を計算することを **ベイズ更新** と呼ぶ。さらに「3回目：裏」「4回目：表」「5回目：裏」というデータを取り込んでベイズ更新を進めると、これまでと同様に、
@@ -304,21 +304,21 @@ veiw_pi(pi_3)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_3](/assets/images/post-imgs/bayesian/bayes_estimation_004.png)
+![veiw_pi_3](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_004.png)
 
 {% highlight python %}
 veiw_pi(pi_4)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_4](/assets/images/post-imgs/bayesian/bayes_estimation_005.png)
+![veiw_pi_4](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_005.png)
 
 {% highlight python %}
 veiw_pi(pi_5)
 {% endhighlight %}
 
 [Out:]
-![veiw_pi_5](/assets/images/post-imgs/bayesian/bayes_estimation_006.png)
+![veiw_pi_5](/tech-docs/assets/images/post-imgs/bayesian/bayes_estimation_006.png)
 
 以上が、基本的なベイズ推定の考え方である。<br>
 ベイズ推定の際、MCMCで収束したら満足してしまう節があるが「これに至る理論背景ってどんなだっけ？」が曖昧だったため、整理した。
