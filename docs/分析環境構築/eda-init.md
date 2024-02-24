@@ -12,18 +12,18 @@ has_children: false
 {: .highlight}
 **前提条件**<br>
 M1 mac の環境で、個人的に現状一番使いやすい分析環境を構築する手順メモ。<br>
-M1 Macbook + Pyenv + Poetry + Jupyter Notebook で構成。
+**M1 Macbook** + **Pyenv** + **Poetry** + **Jupyter Notebook** で構成。
 
 ## ■ 概要
 
-Python 環境構築にあたって，二種類のパッケージを使用する。
+Python 環境構築にあたって，以下2種類のパッケージを使用する。
 
 + **Pyenv**: Python 仮想環境管理
 + **Poetry**: パッケージ管理
 
-Anaconda は上記2つを1つにまとめたようなもので便利だったが、商用利用で有償となったため使うのをやめた。
+Anaconda は上記2つを1つにまとめたようなもので便利だったが、商用利用で有償となったので使うのやめた。
 ← 参考：[Sustaining our stewardship of the open-source data science community](https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community)<br>
-また、Poetry 単体では Python のバージョンは管理できないようなので pyenv を併用する。
+また、Poetry 単体では Python のバージョンは管理できないようなので Pyenv を併用する。
 
 Poetry と Pyenv の初回インストール後、日常使っていて新たに仮想環境立てる場面でいろいろ忘れてることが多いので、備忘のためにまとめる。
 
@@ -65,7 +65,7 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 cd ~/.pyenv && src/configure && make -C src
 {% endhighlight %}
 
-パスが通らないと思うので .zprofile,  .zshrc ファイルを修正。
+パスが通らないと思うので .zprofile,  .zshrc ファイルを修正
 
 {% highlight zsh %}
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zprofile
@@ -74,7 +74,7 @@ echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 {% endhighlight %}
 
-ターミナルを再起動して以下を実行し、バージョンが確認できればOK。
+ターミナルを再起動して以下を実行し、バージョンが確認できればOK
 
 {% highlight zsh %}
 pyenv --version
@@ -86,7 +86,7 @@ pyenv --version
 
 ### pyenv で必要な Python version をインストールする
 
-任意の Python バージョンを利用するためにインストールする。実行できるバージョンを確認するには
+任意の Python バージョンを利用するためにインストールする。実行できるバージョンを確認するには、
 
 {% highlight zsh %}
 pyenv install --list
@@ -101,19 +101,19 @@ pyenv install 3.9.9
 でダウンロード、インストールする。
 
 環境にはインストールされたが M1 Mac がターミナルで `python` と打った時に反応するのはシステム側の Python bin となってる。<br>
-`python` と打つことでシステム側の python を、python3 と打つことで今回インストールした 3.9.9 を使えるようにするには、本来的には以下のコマンドを打つことで実現されるはずなのだが、、、
+`python` と打つことでシステム側の Python を、`python3` と打つことで今回インストールした 3.9.9 を使えるようにするには、本来的には以下のコマンドで実現できるはずなのだが、、、
 
 {% highlight zsh %}
 pyenv global system 3.9.9
 {% endhighlight %}
 
-残念ながら、**M1 Mac ではこれが反応しなそう** なので、設定する Poetry の環境ごとに以下を実行して対応する。
+残念ながら、**M1 Mac ではこれが反応しなそう** だったので、設定する Poetry の環境ごとに以下を実行して対応する。
 
 {% highlight zsh %}
 pyenv local 3.9.9
 {% endhighlight %}
 
-そもそも pyenv では global は全体設定、local は特定のディレクトリ内でのバージョン設定となっており、設定していれば local が優先される。<br>
+そもそも Pyenv では global は全体設定、local は特定のディレクトリ内でのバージョン設定となっており、設定していれば local が優先される。<br>
 （この設定は次の **“Poetry env で Python version を変更する“** で初手として実行する。）
 
 ### Poetry env で Python version を変更する
@@ -136,7 +136,7 @@ poetry init
 poetry install
 {% endhighlight %}
 
-`poetry init` すると、対話式で質問が表示され、それらの質問に答えていくとプロジェクトの設定が完了し pyproject.toml という設定ファイルが作られる。
+`poetry init` すると、対話式で質問が表示され、それらの質問に答えていくとプロジェクトの設定が完了し `pyproject.toml` という設定ファイルが作られる。
 
 設定が完了したら、`poetry install` を行う。
 
@@ -176,23 +176,23 @@ poetry add jupyter notebook
 
 参考：[https://gadgetlunatic.com/post/use-poetry-along-with-jupyter/](https://gadgetlunatic.com/post/use-poetry-along-with-jupyter/)
 
-このまま、`poetry run jupyter notebook` のコマンドから Jupyter Notebook を起動して、その内で実行したコードに Poetry でインストールしたモジュールをインポートする記述があると、`ModuleNotFoundError` を吐く。<br>
+このまま、`poetry run jupyter notebook` のコマンドから Jupyter Notebook を起動して、その内で実行したコードに Poetry でインストールしたモジュールをインポートしようとすると、`ModuleNotFoundError` を吐く。<br>
 原因は、システムにインストールされている Jupyter が使っている Python kernel からは Poetry プロジェクトの venv が参照できないため。
 
-これを解決するため、Jupyter に Poetry が生成した venv のカーネルを追加する。<br>
+これを解決するために、Jupyter に Poetry が生成した venv のカーネルを追加する。<br>
 はじめに ipykernel モジュールをプロジェクトに追加する。
 
 {% highlight zsh %}
 poetry add --dev ipykernel
 {% endhighlight %}
 
-poetry shell などで仮想環境に入ったのちに、次のコマンドを実行することで pyenv のカーネルをJupyter に追加することができる。
+`poetry shell` などで仮想環境に入ったのちに、次のコマンドを実行することで pyenv のカーネルを Jupyter に追加することができる。
 
 {% highlight zsh %}
 ipython kernel install --user --name=your-project-name
 {% endhighlight %}
 
-Jupyter上でさきほど追加したカーネルを指定して実行することで、問題なくインポートを含むコードを実行することができる。Jupyterで使えるカーネルの一覧の確認方法は以下：
+Jupyter 上でさきほど追加したカーネルを指定して実行することで、問題なくインポートを含むコードを実行することができる。Jupyter で使えるカーネルの一覧の確認方法は以下：
 
 {% highlight zsh %}
 jupyter kernelspec list
@@ -206,7 +206,7 @@ jupyter kernelspec remove your-kernel-name
 
 ## ■ 上記環境設定時の事件簿
 
-### 【事件その1】poery 管理ライブラリを kernel が参照しない問題（解決済）
+### 【事件その1】Poery 管理のライブラリを kernel が参照しない問題（解決済）
 
 普通に以下で Notebook を起動
 
@@ -226,7 +226,7 @@ print(sys.executable)
 print(sys.version)
 {% endhighlight %}
 
-実行すると、意図しない python 環境（system）を参照してしまっているはず。。
+実行すると、意図しない python 環境（system）を参照してしまっているはず。
 
 ※ `poetry env info` で設定している仮想環境の python は期待挙動
 <br>
@@ -236,12 +236,10 @@ print(sys.version)
 **【解決策】**2021/12/31<br>
 `poetry shell` で仮想環境をアクティブ化してから kernel を起動しないとダメ。
 
-### 【事件その2】scipy, sklearn 入らない問題（解決済）
+### 【事件その2】scipy・sklearn が入らない問題（解決済）
 
-scipy が入らない。。
-
-何らかの理由によって `scipy` が入ってくれない。もともと `scikit-learn` を入れて使いたかったが、依存関係を制御する.tomlファイルをいじっても解決せず。<br>
-仕方ないから `miniforge` 環境を現時点の標準とする。（仕事用のmacbook pro には問題なくインストールできた。偉い人が解決するまでは M1 では miniforge ユーザーとして頑張る）
+なぜか `scipy` が入らない。。もともと `scikit-learn` を入れて使いたかったが、依存関係を制御する.tomlファイルをいじっても解決せず。<br>
+仕方ないから `miniforge` 環境を現時点の標準とする。（M1 じゃない Macbook Pro には同じ操作で問題なくインストールできた。偉い人が解決するまでは M1 では `miniforge` ユーザーとして頑張る）
 
 2021/10/24 → `pyenv` のバージョンうまくいじると入ったりするかも？再現確認までできてない
 
