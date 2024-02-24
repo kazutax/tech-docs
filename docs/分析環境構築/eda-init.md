@@ -215,8 +215,9 @@ poetry run jupyter notebook
 {% endhighlight %}
 
 順調に起動し、設定済みの kernel で Notebook を利用可能、、と思ったらライブラリの読み込みで `poetry add` したはずのライブラリ読み込みエラーなった。。
-![lib-error](/tech-docs/assets/images/post-imgs/env/lib-error.png)
 
+![lib-error](/tech-docs/assets/images/post-imgs/env/lib-error.png)
+<br>
 `sys.version`、 `sys.executable` を確認してみると、pyenv で設定している python 環境に kernel が接続されていないことがある。
 
 {% highlight python %}
@@ -228,6 +229,7 @@ print(sys.version)
 実行すると、意図しない python 環境（system）を参照してしまっているはず。。
 
 ※ `poetry env info` で設定している仮想環境の python は期待挙動
+<br>
 ![poetry-env-info](/tech-docs/assets/images/post-imgs/env/poetry-env-info.png)
 
 {: .highlight}

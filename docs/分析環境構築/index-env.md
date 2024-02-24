@@ -8,5 +8,3 @@ permalink: /index-env
 
 # 分析環境構築
 
-- TOC
-{:toc}
