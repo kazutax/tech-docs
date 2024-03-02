@@ -10,13 +10,13 @@ has_children: false
 # ローカル分析環境の量産
 
 {: .highlight}
-**前提条件**<br>
+**前提**<br>
 M1 mac の環境で、個人的に現状一番使いやすい分析環境を構築する手順メモ。<br>
 **M1 Macbook** + **Pyenv** + **Poetry** + **Jupyter Notebook** で構成。
 
 ## ■ 概要
 
-Python 環境構築にあたって，以下2種類のパッケージを使用する。
+Python による分析環境構築のため，以下2種類のパッケージを使用する。
 
 + **Pyenv**: Python 仮想環境管理
 + **Poetry**: パッケージ管理

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Gitユーザー登録
+title: Git ユーザー登録
 description: "ローカル環境に Git のインストールが完了したらユーザー名とメールアドレスを登録する"
 nav_order: 2
 parent: 分析環境構築
 has_children: false
 ---
 
-# Git のユーザー登録（ローカル）
+# Git ユーザー登録（ローカル）
 
 git コマンドのインストールが完了したら、ターミナルを開いて、ユーザー名とメールアドレスを登録する。
 ※ 名前は任意に置き換えて
