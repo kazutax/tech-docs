@@ -4,7 +4,8 @@ title: ベイズ推定のキホン
 description: "ベイズ推定を理解するために、「ベイズの定理」からの論理展開・考え方をまとめる。理解の助けに、例題と Python の基本ライブラリを使ったコードスニペットを示す。"
 nav_order: 1
 parent: ベイズ統計
-has_children: true
+has_children: false
+has_toc: false
 # permalink: /index-end
 ---
 
