@@ -32,7 +32,7 @@ import math
 ### ◆ カイ二乗検定の場合
 
 {% highlight python %}
-def calculate_sample_size_chisquare(w, alpha, power, ratio=1):
+def calculate_sample_size_chisquare(w, alpha, power, ratio = 1):
     """
     カイ二乗検定のためのサンプルサイズ計算
 
@@ -45,8 +45,8 @@ def calculate_sample_size_chisquare(w, alpha, power, ratio=1):
     df = 1  # 2つの群の場合、自由度は1
     chi2_alpha = stats.chi2.ppf(1 - alpha, df)
     chi2_power = stats.chi2.ppf(power, df)
-    n = (chi2_alpha + chi2_power) / (w**2)
-    n1 = n * (1 + 1/ratio)
+    n = (chi2_alpha + chi2_power) / (w ** 2)
+    n1 = n * (1 + 1 / ratio)
     n2 = n * (1 + ratio) / ratio
     return math.ceil(n1), math.ceil(n2)
 {% endhighlight %}
@@ -60,14 +60,14 @@ cohen_w = np.sqrt(chi_squared_stat / n)
 
 ※ 実行例
 {% highlight python %}
-# 例: w=0.3, alpha=0.05, power=0.8, ratio=1
+# 例: w = 0.3, alpha = 0.05, power = 0.8, ratio = 1
 n1, n2 = calculate_sample_size_chisquare(0.3, 0.05, 0.8, 1)
 print(f"介入群のサンプルサイズ: {n1}, コントロール群のサンプルサイズ: {n2}")
 {% endhighlight %}
 
 ### ◆ 独立標本t検定の場合
 {% highlight python %}
-def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio=1):
+def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio = 1):
     """
     効果量Cohen's dを使用した独立標本t検定のサンプルサイズ計算
 
@@ -82,10 +82,10 @@ def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio=1):
     z_power = stats.norm.ppf(power)
     
     # nの計算
-    n = ((z_alpha + z_power)**2) * (2 * (1 + 1/ratio)) / (d**2)
+    n = ((z_alpha + z_power) ** 2) * (2 * (1 + 1/ratio)) / (d ** 2)
     
     # 介入群とコントロール群のサンプルサイズ
-    n1 = n * (1 + 1/ratio)
+    n1 = n * (1 + 1 / ratio)
     n2 = n * (1 + ratio) / ratio
     return math.ceil(n1), math.ceil(n2)
 {% endhighlight %}
@@ -99,7 +99,7 @@ cohen_d = (mean_a - mean_b) / std_common
 
 ※ 実行例
 {% highlight python %}
-# 例: d=0.5, alpha=0.05, power=0.8, ratio=1
+# 例: d = 0.5, alpha = 0.05, power = 0.8, ratio = 1
 n1, n2 = calculate_sample_size_ttest_cohens_d(0.5, 0.05, 0.8, 1)
 print(f"介入群のサンプルサイズ: {n1}, コントロール群のサンプルサイズ: {n2}")
 {% endhighlight %}
