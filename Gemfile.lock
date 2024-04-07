@@ -77,10 +77,13 @@ GEM
       octokit (>= 4, < 7, != 4.4.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-paginate (1.1.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-seo-tag (2.8.0)
       jekyll (>= 3.8, < 5.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.4.0)
@@ -146,6 +149,8 @@ DEPENDENCIES
   html-proofer (~> 5.0)
   jekyll-github-metadata (>= 2.15)
   jekyll-include-cache
+  jekyll-paginate
+  jekyll-sitemap
   just-the-docs!
 
 BUNDLED WITH

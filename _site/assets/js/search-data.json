@@ -987,88 +987,88 @@
     "relUrl": "/docs/jekyll/latex-on-jekyll/"
   },"141": {
     "doc": "Layout",
-    "title": "Layout",
-    "content": "You specify the layout for a page in its front matter. Just the Docs has a default layout with a sidebar, used for almost all pages in the theme docs, and a minimal layout that omits the sidebar. ",
-    "url": "/docs/layout/layout/",
-    
-    "relUrl": "/docs/layout/layout/"
-  },"142": {
-    "doc": "Layout",
-    "title": "The layout concept",
-    "content": "See the Jekyll docs page about layouts for an explanation of the general idea of layouts and how to specify them. You can use Jekyll’s front matter defaults to specify the same layout for many pages. ",
-    "url": "/docs/layout/layout/#the-layout-concept",
-    
-    "relUrl": "/docs/layout/layout/#the-layout-concept"
-  },"143": {
-    "doc": "Layout",
-    "title": "The default layout",
-    "content": "This page uses the default layout. It is a responsive layout: on medium and larger width displays, it displays a sidebar, including a navigation panel; on smaller width displays, the sidebar is automatically hidden under a button. Each child (and grandchild) page of a top-level page has so-called breadcrumbs: links to its parent (and grandparent) pages. It shows the breadcrumbs above the main content of the page. Each page that has child pages generally has a list of links to those pages (you can suppress it by has_toc: false in the front matter). It shows the list as a table of contents below the main content. ",
-    "url": "/docs/layout/layout/#the-default-layout",
-    
-    "relUrl": "/docs/layout/layout/#the-default-layout"
-  },"144": {
-    "doc": "Layout",
-    "title": "The minimal layout",
-    "content": "A child and grandchild page of this page use the minimal layout. This differs from the default layout by omitting the sidebar – and thereby also the navigation panel. To navigate between pages with the minimal layout, you can use the breadcrumbs and the tables of contents. ",
-    "url": "/docs/layout/layout/#the-minimal-layout",
-    
-    "relUrl": "/docs/layout/layout/#the-minimal-layout"
-  },"145": {
-    "doc": "Layout",
-    "title": "Other layouts",
-    "content": "Just the Docs has further layouts: about, home, page, and post. Currently, they are all based on the default layout. See the Jekyll docs about inheritance for how to customize them. ",
-    "url": "/docs/layout/layout/#other-layouts",
-    
-    "relUrl": "/docs/layout/layout/#other-layouts"
-  },"146": {
-    "doc": "Layout",
     "title": "Layout Utilities",
     "content": " ",
     "url": "/docs/utilities/layout/#layout-utilities",
     
     "relUrl": "/docs/utilities/layout/#layout-utilities"
-  },"147": {
+  },"142": {
     "doc": "Layout",
     "title": "Table of contents",
     "content": ". | Spacing | Horizontal Alignment | Vertical Alignment | Display | . ",
     "url": "/docs/utilities/layout/#table-of-contents",
     
     "relUrl": "/docs/utilities/layout/#table-of-contents"
-  },"148": {
+  },"143": {
     "doc": "Layout",
     "title": "Spacing",
     "content": "These spacers are available to use for margins and padding with responsive utility classes. Combine these prefixes with a screen size and spacing scale to use them responsively. | Classname prefix | What it does | . | .m- | margin | . | .mx- | margin-left, margin-right | . | .my- | margin top, margin bottom | . | .mt- | margin-top | . | .mr- | margin-right | . | .mb- | margin-bottom | . | .ml- | margin-left | . | Classname prefix | What it does | . | .p- | padding | . | .px- | padding-left, padding-right | . | .py- | padding top, padding bottom | . | .pt- | padding-top | . | .pr- | padding-right | . | .pb- | padding-bottom | . | .pl- | padding-left | . Spacing values are based on a 1rem = 16px spacing scale, broken down into these units: . | Spacer/suffix | Size in rems | Rem converted to px | . | 1 | 0.25rem | 4px | . | 2 | 0.5rem | 8px | . | 3 | 0.75rem | 12px | . | 4 | 1rem | 16px | . | 5 | 1.5rem | 24px | . | 6 | 2rem | 32px | . | 7 | 2.5rem | 40px | . | 8 | 3rem | 48px | . | auto | auto | auto | . Use mx-auto to horizontally center elements. Examples . In Markdown, use the {: } wrapper to apply custom classes: . This paragraph will have a margin bottom of 1rem/16px on large screens. {: .mb-lg-4 } This paragraph will have 2rem/32px of padding on the right and left at all screen sizes. {: .px-6 } . ",
     "url": "/docs/utilities/layout/#spacing",
     
     "relUrl": "/docs/utilities/layout/#spacing"
-  },"149": {
+  },"144": {
     "doc": "Layout",
     "title": "Horizontal Alignment",
     "content": "| Classname | What it does | . | .float-left | float: left | . | .float-right | float: right | . | .flex-justify-start | justify-content: flex-start | . | .flex-justify-end | justify-content: flex-end | . | .flex-justify-between | justify-content: space-between | . | .flex-justify-around | justify-content: space-around | . Note: any of the flex- classes must be used on a parent element that has d-flex applied to it. ",
     "url": "/docs/utilities/layout/#horizontal-alignment",
     
     "relUrl": "/docs/utilities/layout/#horizontal-alignment"
-  },"150": {
+  },"145": {
     "doc": "Layout",
     "title": "Vertical Alignment",
     "content": "| Classname | What it does | . | .v-align-baseline | vertical-align: baseline | . | .v-align-bottom | vertical-align: bottom | . | .v-align-middle | vertical-align: middle | . | .v-align-text-bottom | vertical-align: text-bottom | . | .v-align-text-top | vertical-align: text-top | . | .v-align-top | vertical-align: top | . ",
     "url": "/docs/utilities/layout/#vertical-alignment",
     
     "relUrl": "/docs/utilities/layout/#vertical-alignment"
-  },"151": {
+  },"146": {
     "doc": "Layout",
     "title": "Display",
     "content": "Display classes aid in adapting the layout of the elements on a page: . | Class |   | . | .d-block | display: block | . | .d-flex | display: flex | . | .d-inline | display: inline | . | .d-inline-block | display: inline-block | . | .d-none | display: none | . Use these classes in conjunction with the responsive modifiers. Examples . In Markdown, use the {: } wrapper to apply custom classes: . This button will be hidden until medium screen sizes: [ A button ](#url) {: .d-none .d-md-inline-block } These headings will be `inline-block`: ### heading 3 {: .d-inline-block } ### heading 3 {: .d-inline-block } . ",
     "url": "/docs/utilities/layout/#display",
     
     "relUrl": "/docs/utilities/layout/#display"
-  },"152": {
+  },"147": {
     "doc": "Layout",
     "title": "Layout",
     "content": " ",
     "url": "/docs/utilities/layout/",
     
     "relUrl": "/docs/utilities/layout/"
+  },"148": {
+    "doc": "Layout",
+    "title": "Layout",
+    "content": "You specify the layout for a page in its front matter. Just the Docs has a default layout with a sidebar, used for almost all pages in the theme docs, and a minimal layout that omits the sidebar. ",
+    "url": "/docs/layout/layout/",
+    
+    "relUrl": "/docs/layout/layout/"
+  },"149": {
+    "doc": "Layout",
+    "title": "The layout concept",
+    "content": "See the Jekyll docs page about layouts for an explanation of the general idea of layouts and how to specify them. You can use Jekyll’s front matter defaults to specify the same layout for many pages. ",
+    "url": "/docs/layout/layout/#the-layout-concept",
+    
+    "relUrl": "/docs/layout/layout/#the-layout-concept"
+  },"150": {
+    "doc": "Layout",
+    "title": "The default layout",
+    "content": "This page uses the default layout. It is a responsive layout: on medium and larger width displays, it displays a sidebar, including a navigation panel; on smaller width displays, the sidebar is automatically hidden under a button. Each child (and grandchild) page of a top-level page has so-called breadcrumbs: links to its parent (and grandparent) pages. It shows the breadcrumbs above the main content of the page. Each page that has child pages generally has a list of links to those pages (you can suppress it by has_toc: false in the front matter). It shows the list as a table of contents below the main content. ",
+    "url": "/docs/layout/layout/#the-default-layout",
+    
+    "relUrl": "/docs/layout/layout/#the-default-layout"
+  },"151": {
+    "doc": "Layout",
+    "title": "The minimal layout",
+    "content": "A child and grandchild page of this page use the minimal layout. This differs from the default layout by omitting the sidebar – and thereby also the navigation panel. To navigate between pages with the minimal layout, you can use the breadcrumbs and the tables of contents. ",
+    "url": "/docs/layout/layout/#the-minimal-layout",
+    
+    "relUrl": "/docs/layout/layout/#the-minimal-layout"
+  },"152": {
+    "doc": "Layout",
+    "title": "Other layouts",
+    "content": "Just the Docs has further layouts: about, home, page, and post. Currently, they are all based on the default layout. See the Jekyll docs about inheritance for how to customize them. ",
+    "url": "/docs/layout/layout/#other-layouts",
+    
+    "relUrl": "/docs/layout/layout/#other-layouts"
   },"153": {
     "doc": "Code with line numbers",
     "title": "Code snippets with line numbers",
@@ -1245,209 +1245,272 @@
     
     "relUrl": "/docs/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF/sample-network-child/"
   },"178": {
+    "doc": "サンプルサイズ計算",
+    "title": "A/Bテストのためのサンプルサイズ計算",
+    "content": ". | A/Bテストの有効性は正しいサンプルサイズの選定に大きく依存する。 | カイ二乗検定および独立標本t検定における、サンプルサイズ計算方法を以下に示す。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#ab%E3%83%86%E3%82%B9%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%B5%E3%82%A4%E3%82%BA%E8%A8%88%E7%AE%97",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#abテストのためのサンプルサイズ計算"
+  },"179": {
+    "doc": "サンプルサイズ計算",
+    "title": "■ 前提",
+    "content": ". | サンプルサイズを決定する際には、実験の 検出力（第二種の過誤のリスクを制御）、有意水準（第一種の過誤のリスク）、効果量（実験群と対照群の差）を考慮する。 | これらのパラメータを使ったサンプルサイズ計算とテスト設計は、テストの信頼性と有効性を確保するために重要。 | 参考：統計学｜検出力とはなんぞや | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-%E5%89%8D%E6%8F%90",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-前提"
+  },"180": {
+    "doc": "サンプルサイズ計算",
+    "title": "■ Python スクリプト",
+    "content": "# ライブラリ import numpy as np import scipy.stats as stats import math . ◆ カイ二乗検定の場合 . def calculate_sample_size_chisquare(w, alpha, power, ratio=1): \"\"\" カイ二乗検定のためのサンプルサイズ計算 :param w: 効果量（Cohen's w） :param alpha: 有意水準 :param power: 検定力（1-β） :param ratio: 介入群とコントロール群のサンプルサイズの比率（n1/n2） :return: 介入群とコントロール群の必要サンプルサイズ（n1, n2） \"\"\" df = 1 # 2つの群の場合、自由度は1 chi2_alpha = stats.chi2.ppf(1 - alpha, df) chi2_power = stats.chi2.ppf(power, df) n = (chi2_alpha + chi2_power) / (w**2) n1 = n * (1 + 1/ratio) n2 = n * (1 + ratio) / ratio return math.ceil(n1), math.ceil(n2) . ※ 効果量（Cohen’s w）は以下で求める . # Cohen's wを計算（カイ二乗統計量とn数から求める） cohen_w = np.sqrt(chi_squared_stat / n) . ※ 実行例 . # 例: w=0.3, alpha=0.05, power=0.8, ratio=1 n1, n2 = calculate_sample_size_chisquare(0.3, 0.05, 0.8, 1) print(f\"介入群のサンプルサイズ: {n1}, コントロール群のサンプルサイズ: {n2}\") . ◆ 独立標本t検定の場合 . def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio=1): \"\"\" 効果量Cohen's dを使用した独立標本t検定のサンプルサイズ計算 :param d: 効果量（Cohen's d） :param alpha: 有意水準（片側検定の場合） :param power: 検定力（1-β） :param ratio: 介入群とコントロール群のサンプルサイズの比率（n1/n2） :return: 介入群とコントロール群の必要サンプルサイズ（n1, n2） \"\"\" # z値を計算 z_alpha = stats.norm.ppf(1 - alpha) z_power = stats.norm.ppf(power) # nの計算 n = ((z_alpha + z_power)**2) * (2 * (1 + 1/ratio)) / (d**2) # 介入群とコントロール群のサンプルサイズ n1 = n * (1 + 1/ratio) n2 = n * (1 + ratio) / ratio return math.ceil(n1), math.ceil(n2) . ※ 効果量（Cohen’s d）は以下で求める . # Cohen's dを計算（標準偏差が群間で等しいと仮定） cohen_d = (mean_a - mean_b) / std_common . ※ 実行例 . # 例: d=0.5, alpha=0.05, power=0.8, ratio=1 n1, n2 = calculate_sample_size_ttest_cohens_d(0.5, 0.05, 0.8, 1) print(f\"介入群のサンプルサイズ: {n1}, コントロール群のサンプルサイズ: {n2}\") . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-python-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-python-スクリプト"
+  },"181": {
+    "doc": "サンプルサイズ計算",
+    "title": "■ 備考",
+    "content": ". | A/Bテストに必要なサンプルサイズは、期待する効果量からどの程度必要か、上記のやり方で手に入る。 | 必要な「テスト期間」についても、上記の効果量を正しく検定するサンプルサイズを得るのに、どの程度の期間を要するのか、から概算可能。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-%E5%82%99%E8%80%83",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/#-備考"
+  },"182": {
+    "doc": "サンプルサイズ計算",
+    "title": "サンプルサイズ計算",
+    "content": " ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/sample_size/"
+  },"183": {
     "doc": "Search",
     "title": "Search",
     "content": " ",
     "url": "/docs/search/",
     
     "relUrl": "/docs/search/"
-  },"179": {
+  },"184": {
     "doc": "Search",
     "title": "Table of contents",
     "content": ". | Enable search in configuration . | Search granularity | Search previews | Search tokenizer | Display URL in search results | Display search button | . | Hiding pages from search . | Example | . | Generate search index when used as a gem | Custom content for search index . | Example | . | . Just the Docs uses lunr.js to add a client-side search interface powered by a JSON index that Jekyll generates. All search results are shown in an auto-complete style interface (there is no search results page). By default, all generated HTML pages are indexed using the following data points: . | Page title | Page content | Page URL | . ",
     "url": "/docs/search/#table-of-contents",
     
     "relUrl": "/docs/search/#table-of-contents"
-  },"180": {
+  },"185": {
     "doc": "Search",
     "title": "Enable search in configuration",
     "content": "In your site’s _config.yml, enable search: . # Enable or disable the site search # Supports true (default) or false search_enabled: true . Search granularity . Pages are split into sections that can be searched individually. The sections are defined by the headings on the page. Each section is displayed in a separate search result. # Split pages into sections that can be searched individually # Supports 1 - 6, default: 2 search.heading_level: 2 . Search previews . A search result can contain previews that show where the search words are found in the specific section. # Maximum amount of previews per search result # Default: 3 search.previews: 3 # Maximum amount of words to display before a matched word in the preview # Default: 5 search.preview_words_before: 5 # Maximum amount of words to display after a matched word in the preview # Default: 10 search.preview_words_after: 10 . Search tokenizer . The default is for hyphens to separate tokens in search terms: gem-based is equivalent to gem based, matching either word. To allow search for hyphenated words: . # Set the search token separator # Default: /[\\s\\-/]+/ # Example: enable support for hyphenated search words search.tokenizer_separator: /[\\s/]+/ . Display URL in search results . # Display the relative url in search results # Supports true (default) or false search.rel_url: false . Display search button . The search button displays in the bottom right corner of the screen and triggers the search input when clicked. # Enable or disable the search button that appears in the bottom right corner of every page # Supports true or false (default) search.button: true . ",
     "url": "/docs/search/#enable-search-in-configuration",
     
     "relUrl": "/docs/search/#enable-search-in-configuration"
-  },"181": {
+  },"186": {
     "doc": "Search",
     "title": "Hiding pages from search",
     "content": "Sometimes you might have a page that you don’t want to be indexed for the search nor to show up in search results, e.g., a 404 page. To exclude a page from search, add the search_exclude: true parameter to the page’s YAML front matter: . Example . --- layout: default title: Page not found nav_exclude: true search_exclude: true --- . ",
     "url": "/docs/search/#hiding-pages-from-search",
     
     "relUrl": "/docs/search/#hiding-pages-from-search"
-  },"182": {
+  },"187": {
     "doc": "Search",
     "title": "Generate search index when used as a gem",
     "content": "If you use Just the Docs as a remote theme, you do not need the following steps. If you use the theme as a gem, you must initialize the search by running this rake command that comes with just-the-docs: . $ bundle exec just-the-docs rake search:init . This command creates the assets/js/zzzz-search-data.json file that Jekyll uses to create your search index. Alternatively, you can create the file manually with this content. ",
     "url": "/docs/search/#generate-search-index-when-used-as-a-gem",
     
     "relUrl": "/docs/search/#generate-search-index-when-used-as-a-gem"
-  },"183": {
+  },"188": {
     "doc": "Search",
     "title": "Custom content for search index",
     "content": "New (v0.4.0) . Advanced . By default, the search feature indexes a page’s .content, .title, and some headers within the .content. Other data (e.g. front matter, files in _data and assets) is not indexed. Users can customize what is indexed. Customizing search indices is an advanced feature that requires Javascript and Liquid knowledge. | When Just the Docs is a local or gem theme, ensure assets/js/zzzz-search-data.json is up-to-date with Generate search index when used as a gem. | Add a new file named _includes/lunr/custom-data.json. Insert custom Liquid code that reads your data (e.g. the page object at include.page) then generates custom Javascript fields that hold the custom data you want to index. Verify these fields in the generated assets/js/search-data.json. | Add a new file named _includes/lunr/custom-index.js. Insert custom Javascript code that reads your custom Javascript fields and inserts them into the search index. You may want to inspect assets/js/just-the-docs.js to better understand the code. | . Example . This example adds front matter usage and examples fields to the search index. _includes/lunr/custom-data.json custom code reads the page usage and examples fields, normalizes the text, and writes the text to custom Javascript myusage and myexamples fields. Javascript fields are similar yet not the same as JSON. jsonify will probably work for most scenarios. {%- capture newline %} {% endcapture -%} \"myusage\": {{ include.page.usage | markdownify | replace:newline,' ' | strip_html | normalize_whitespace | strip | jsonify }}, \"myexamples\": {{ include.page.examples | markdownify | replace:newline,' ' | strip_html | normalize_whitespace | strip | jsonify }}, . _includes/lunr/custom-index.js custom code is inserted into the Javascript loop of assets/js/just-the-docs.js. All custom Javascript fields are accessed as fields of docs[i] such as docs[i].myusage. Finally, append your custom fields on to the already existing docs[i].content. const content_to_merge = [docs[i].content, docs[i].myusage, docs[i].myexamples]; docs[i].content = content_to_merge.join(' '); . ",
     "url": "/docs/search/#custom-content-for-search-index",
     
     "relUrl": "/docs/search/#custom-content-for-search-index"
-  },"184": {
+  },"189": {
     "doc": "Second To None",
     "title": "表現",
     "content": "second to none 直訳：誰に対しても2番手にならない → 誰にも劣らない、最高の、一番良い、一番悪い、一番早い etc. ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#%E8%A1%A8%E7%8F%BE",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#表現"
-  },"185": {
+  },"190": {
     "doc": "Second To None",
     "title": "例文",
     "content": "“The quality of their customer service is second to none. I’ve never had a better experience.” 「彼らのカスタマーサービスの質は誰にも劣りません。これまでで最高の経験でした。」 . “In terms of reliability, this brand is second to none. You won’t regret your purchase.” 「信頼性の面でこのブランドは誰にも劣りません。購入を後悔することはないでしょう。」 . “Her dedication to her work is second to none; she always goes above and beyond.” 「彼女の仕事に対する献身は誰にも劣りません。いつも一歩先を行っています。」 . ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#%E4%BE%8B%E6%96%87",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/#例文"
-  },"186": {
+  },"191": {
     "doc": "Second To None",
     "title": "Second To None",
     "content": " ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/second-to-none/"
-  },"187": {
+  },"192": {
+    "doc": "t検定の種類",
+    "title": "t検定の種類",
+    "content": ". | 一言で「t検定」といっても、データの条件や研究の目的に応じて適切に設計する必要がある。 | 特に、データが正規分布に従っているかどうか、サンプル間に依存関係があるかどうか（独立しているか、対応しているか）を考慮することが重要。 | データの性質や比較したい群の関係性に基づいて、基本的には主に以下の3種類から選択する。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/"
+  },"193": {
+    "doc": "t検定の種類",
+    "title": "1. 独立二標本t検定（Independent two-sample t-test）",
+    "content": "■ 目的 . | 2つの独立した群 の平均値が統計的に有意に異なるかどうかを検定する。 | . ■ 使用条件 . | 2つのサンプルが独立していて、各群が正規分布に従い、分散が等しい（等分散を仮定したt検定）かどうかを検討する必要がある。 | 分散が等しくない場合はテスト設計を修正する。（等分散でないt検定、Welchのt検定） | . ■ 備考 . | Web 系のA/Bテストであれば、主にこれが選択される。 | この検定は、各サンプルが独立した2つの異なるグループのデータセット間で平均値に統計的に有意な差があるかどうかを見る。 | 一方のグループのサンプルが他方のグループのサンプルに直接関連していない状況を分析するため「対応のないt検定」とも呼ばれる。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#1-%E7%8B%AC%E7%AB%8B%E4%BA%8C%E6%A8%99%E6%9C%ACt%E6%A4%9C%E5%AE%9Aindependent-two-sample-t-test",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#1-独立二標本t検定independent-two-sample-t-test"
+  },"194": {
+    "doc": "t検定の種類",
+    "title": "2. 対応のあるt検定（Paired t-test）",
+    "content": "■ 目的 . | 同じ対象に対して2回測定 した場合など、対応のある2つの測定値の平均値が統計的に有意に異なるかどうかを検定する。 | . ■ 使用条件 . | 2回の測定が同一の対象群から得られ、これらの差が正規分布に従うと考えられる場合に使用する。 | 例えば、治療前後の効果の比較や、同じ人に対する異なる条件下でのテスト結果の比較など。 | ユーザー群を分けるWeb系のA/Bテストでは見かけない。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#2-%E5%AF%BE%E5%BF%9C%E3%81%AE%E3%81%82%E3%82%8Bt%E6%A4%9C%E5%AE%9Apaired-t-test",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#2-対応のあるt検定paired-t-test"
+  },"195": {
+    "doc": "t検定の種類",
+    "title": "3. 一標本t検定（One-sample t-test）",
+    "content": "■ 目的 . | 一つのサンプル群の平均値 が特定の値（通常は理論値や期待値）と統計的に有意に異なるかどうかを検定する。 | . ■ 使用条件 . | サンプルデータが正規分布に従い、検定したい平均値が明確な場合に使用する。 | 例えば、クラスのテストの平均点が全国平均と異なるかどうかを検定する場合など。 | ユーザー群を分けるWeb系のA/Bテストでは見かけない。 | . ",
+    "url": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#3-%E4%B8%80%E6%A8%99%E6%9C%ACt%E6%A4%9C%E5%AE%9Aone-sample-t-test",
+    
+    "relUrl": "/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/t_test_type/#3-一標本t検定one-sample-t-test"
+  },"196": {
     "doc": "Tables",
     "title": "Tables",
     "content": "Tables are responsive by default, allowing wide tables to have a horizontal scroll to access columns outside of the normal viewport. | head1 | head two | three | . | ok | good swedish fish | nice | . | out of stock | good and plenty | nice | . | ok | good oreos | hmm | . | ok | good zoute drop | yumm | . | head1 | head two | three |:-------------|:------------------|:------| ok | good swedish fish | nice | out of stock | good and plenty | nice | ok | good `oreos` | hmm | ok | good `zoute` drop | yumm | . ",
     "url": "/docs/ui-components/tables/",
     
     "relUrl": "/docs/ui-components/tables/"
-  },"188": {
+  },"197": {
     "doc": "IT技術表現",
     "title": "IT技術表現",
     "content": " ",
     "url": "/docs/%E8%8B%B1%E8%AA%9E/tech-eng/",
     
     "relUrl": "/docs/%E8%8B%B1%E8%AA%9E/tech-eng/"
-  },"189": {
-    "doc": "Typography",
-    "title": "Typography Utilities",
-    "content": " ",
-    "url": "/docs/utilities/typography/#typography-utilities",
-    
-    "relUrl": "/docs/utilities/typography/#typography-utilities"
-  },"190": {
-    "doc": "Typography",
-    "title": "Table of contents",
-    "content": ". | Font size | Font weight | Line height | Text justification | . ",
-    "url": "/docs/utilities/typography/#table-of-contents",
-    
-    "relUrl": "/docs/utilities/typography/#table-of-contents"
-  },"191": {
-    "doc": "Typography",
-    "title": "Font size",
-    "content": "Use the .fs-1 - .fs-10 to set an explicit font-size. | Class | Small screen size font-size | Large screen size font-size | . | .fs-1 | 9px | 10px | . | .fs-2 | 11px | 12px | . | .fs-3 | 12px | 14px | . | .fs-4 | 14px | 16px | . | .fs-5 | 16px | 18px | . | .fs-6 | 18px | 24px | . | .fs-7 | 24px | 32px | . | .fs-8 | 32px | 38px | . | .fs-9 | 38px | 42px | . | .fs-10 | 42px | 48px | . Font size 1 . Font size 2 . Font size 3 . Font size 4 . Font size 5 . Font size 6 . Font size 7 . Font size 8 . Font size 9 . Font size 10 . In Markdown, use the `{: }` wrapper to apply custom classes: Font size 1 {: .fs-1 } Font size 2 {: .fs-2 } Font size 3 {: .fs-3 } Font size 4 {: .fs-4 } Font size 5 {: .fs-5 } Font size 6 {: .fs-6 } Font size 7 {: .fs-7 } Font size 8 {: .fs-8 } Font size 9 {: .fs-9 } Font size 10 {: .fs-10 } . ",
-    "url": "/docs/utilities/typography/#font-size",
-    
-    "relUrl": "/docs/utilities/typography/#font-size"
-  },"192": {
-    "doc": "Typography",
-    "title": "Font weight",
-    "content": "Use the .fw-300 - .fw-700 to set an explicit font-weight. Font weight 300 . Font weight 400 . Font weight 500 . Font weight 700 . In Markdown, use the `{: }` wrapper to apply custom classes: Font weight 300 {: .fw-300 } Font weight 400 {: .fw-400 } Font weight 500 {: .fw-500 } Font weight 700 {: .fw-700 } . ",
-    "url": "/docs/utilities/typography/#font-weight",
-    
-    "relUrl": "/docs/utilities/typography/#font-weight"
-  },"193": {
-    "doc": "Typography",
-    "title": "Line height",
-    "content": "Use the lh- classes to explicitly apply line height to text. | Class | line-height value | Notes | . | .lh-0 | 0 |   | . | .lh-tight | 1.1 | Default for headings | . | .lh-default | 1.4 | Default for body (paragraphs) | . No Line height No Line height . Tight line height Tight line height . Default line height Default line height . In Markdown, use the `{: }` wrapper to apply custom classes: No Line height No Line height {: .lh-0 } Tight line height Tight line height {: .lh-tight } Default line height Default line height {: .fh-default } . ",
-    "url": "/docs/utilities/typography/#line-height",
-    
-    "relUrl": "/docs/utilities/typography/#line-height"
-  },"194": {
-    "doc": "Typography",
-    "title": "Text justification",
-    "content": "By default text is justified left. Use these text- classes to override settings: . | Class | What it does | . | .text-left | text-align: left | . | .text-right | text-align: right | . | .text-center | text-align: center | . ",
-    "url": "/docs/utilities/typography/#text-justification",
-    
-    "relUrl": "/docs/utilities/typography/#text-justification"
-  },"195": {
-    "doc": "Typography",
-    "title": "Typography",
-    "content": " ",
-    "url": "/docs/utilities/typography/",
-    
-    "relUrl": "/docs/utilities/typography/"
-  },"196": {
+  },"198": {
     "doc": "Typography",
     "title": "Typography",
     "content": " ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"197": {
+  },"199": {
     "doc": "Typography",
     "title": "Table of contents",
     "content": ". | Font stack | Responsive type scale | Headings | Body text | Inline elements | Typographic Utilities | . ",
     "url": "/docs/ui-components/typography/#table-of-contents",
     
     "relUrl": "/docs/ui-components/typography/#table-of-contents"
-  },"198": {
+  },"200": {
     "doc": "Typography",
     "title": "Font stack",
     "content": "By default, Just the Docs uses a native system font stack for sans-serif fonts: . system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Segoe UI Emoji\" . ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz . For monospace type, like code snippets or the &lt;pre&gt; element, Just the Docs uses a native system font stack for monospace fonts: . \"SFMono-Regular\", Menlo, Consolas, Monospace . ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz . ",
     "url": "/docs/ui-components/typography/#font-stack",
     
     "relUrl": "/docs/ui-components/typography/#font-stack"
-  },"199": {
+  },"201": {
     "doc": "Typography",
     "title": "Responsive type scale",
     "content": "Just the Docs uses a responsive type scale that shifts depending on the viewport size. | Selector | Small screen size font-size | Large screen size font-size | . | h1, .text-alpha | 32px | 36px | . | h2, .text-beta | 18px | 24px | . | h3, .text-gamma | 16px | 18px | . | h4, .text-delta | 14px | 16px | . | h5, .text-epsilon | 16px | 18px | . | h6, .text-zeta | 18px | 24px | . | body | 14px | 16px | . ",
     "url": "/docs/ui-components/typography/#responsive-type-scale",
     
     "relUrl": "/docs/ui-components/typography/#responsive-type-scale"
-  },"200": {
+  },"202": {
     "doc": "Typography",
     "title": "Headings",
     "content": "Headings are rendered like this: . ",
     "url": "/docs/ui-components/typography/#headings",
     
     "relUrl": "/docs/ui-components/typography/#headings"
-  },"201": {
+  },"203": {
     "doc": "Typography",
     "title": "Heading 1",
     "content": " ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"202": {
+  },"204": {
     "doc": "Typography",
     "title": "Heading 2",
     "content": "Heading 3 . Heading 4 . Heading 5 . Heading 6 . # Heading 1 ## Heading 2 ### Heading 3 #### Heading 4 ##### Heading 5 ###### Heading 6 . ",
     "url": "/docs/ui-components/typography/",
     
     "relUrl": "/docs/ui-components/typography/"
-  },"203": {
+  },"205": {
     "doc": "Typography",
     "title": "Body text",
     "content": "Default body text is rendered like this: . Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
     "url": "/docs/ui-components/typography/#body-text",
     
     "relUrl": "/docs/ui-components/typography/#body-text"
-  },"204": {
+  },"206": {
     "doc": "Typography",
     "title": "Inline elements",
     "content": "Text can be bold, italic, or strikethrough. Link to another page. Text can be **bold**, _italic_, or ~~strikethrough~~. [Link to another page](//). ",
     "url": "/docs/ui-components/typography/#inline-elements",
     
     "relUrl": "/docs/ui-components/typography/#inline-elements"
-  },"205": {
+  },"207": {
     "doc": "Typography",
     "title": "Typographic Utilities",
     "content": "There are a number of specific typographic CSS classes that allow you to override default styling for font size, font weight, line height, and capitalization. View typography utilities . ",
     "url": "/docs/ui-components/typography/#typographic-utilities",
     
     "relUrl": "/docs/ui-components/typography/#typographic-utilities"
-  },"206": {
+  },"208": {
+    "doc": "Typography",
+    "title": "Typography Utilities",
+    "content": " ",
+    "url": "/docs/utilities/typography/#typography-utilities",
+    
+    "relUrl": "/docs/utilities/typography/#typography-utilities"
+  },"209": {
+    "doc": "Typography",
+    "title": "Table of contents",
+    "content": ". | Font size | Font weight | Line height | Text justification | . ",
+    "url": "/docs/utilities/typography/#table-of-contents",
+    
+    "relUrl": "/docs/utilities/typography/#table-of-contents"
+  },"210": {
+    "doc": "Typography",
+    "title": "Font size",
+    "content": "Use the .fs-1 - .fs-10 to set an explicit font-size. | Class | Small screen size font-size | Large screen size font-size | . | .fs-1 | 9px | 10px | . | .fs-2 | 11px | 12px | . | .fs-3 | 12px | 14px | . | .fs-4 | 14px | 16px | . | .fs-5 | 16px | 18px | . | .fs-6 | 18px | 24px | . | .fs-7 | 24px | 32px | . | .fs-8 | 32px | 38px | . | .fs-9 | 38px | 42px | . | .fs-10 | 42px | 48px | . Font size 1 . Font size 2 . Font size 3 . Font size 4 . Font size 5 . Font size 6 . Font size 7 . Font size 8 . Font size 9 . Font size 10 . In Markdown, use the `{: }` wrapper to apply custom classes: Font size 1 {: .fs-1 } Font size 2 {: .fs-2 } Font size 3 {: .fs-3 } Font size 4 {: .fs-4 } Font size 5 {: .fs-5 } Font size 6 {: .fs-6 } Font size 7 {: .fs-7 } Font size 8 {: .fs-8 } Font size 9 {: .fs-9 } Font size 10 {: .fs-10 } . ",
+    "url": "/docs/utilities/typography/#font-size",
+    
+    "relUrl": "/docs/utilities/typography/#font-size"
+  },"211": {
+    "doc": "Typography",
+    "title": "Font weight",
+    "content": "Use the .fw-300 - .fw-700 to set an explicit font-weight. Font weight 300 . Font weight 400 . Font weight 500 . Font weight 700 . In Markdown, use the `{: }` wrapper to apply custom classes: Font weight 300 {: .fw-300 } Font weight 400 {: .fw-400 } Font weight 500 {: .fw-500 } Font weight 700 {: .fw-700 } . ",
+    "url": "/docs/utilities/typography/#font-weight",
+    
+    "relUrl": "/docs/utilities/typography/#font-weight"
+  },"212": {
+    "doc": "Typography",
+    "title": "Line height",
+    "content": "Use the lh- classes to explicitly apply line height to text. | Class | line-height value | Notes | . | .lh-0 | 0 |   | . | .lh-tight | 1.1 | Default for headings | . | .lh-default | 1.4 | Default for body (paragraphs) | . No Line height No Line height . Tight line height Tight line height . Default line height Default line height . In Markdown, use the `{: }` wrapper to apply custom classes: No Line height No Line height {: .lh-0 } Tight line height Tight line height {: .lh-tight } Default line height Default line height {: .fh-default } . ",
+    "url": "/docs/utilities/typography/#line-height",
+    
+    "relUrl": "/docs/utilities/typography/#line-height"
+  },"213": {
+    "doc": "Typography",
+    "title": "Text justification",
+    "content": "By default text is justified left. Use these text- classes to override settings: . | Class | What it does | . | .text-left | text-align: left | . | .text-right | text-align: right | . | .text-center | text-align: center | . ",
+    "url": "/docs/utilities/typography/#text-justification",
+    
+    "relUrl": "/docs/utilities/typography/#text-justification"
+  },"214": {
+    "doc": "Typography",
+    "title": "Typography",
+    "content": " ",
+    "url": "/docs/utilities/typography/",
+    
+    "relUrl": "/docs/utilities/typography/"
+  },"215": {
     "doc": "UI Components",
     "title": "UI Components",
     "content": "To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default Markdown elements with few additional CSS classes needed. ",
     "url": "/docs/ui-components",
     
     "relUrl": "/docs/ui-components"
-  },"207": {
+  },"216": {
     "doc": "Utilities",
     "title": "Utilities",
     "content": "CSS utility classes come in handy when you want to override default styles to create additional whitespace (margins/padding), correct unexpected shifts in font size or weight, add color, or hide (or show) something at a specific screen size. ",
