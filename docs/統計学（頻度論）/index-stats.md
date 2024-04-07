@@ -8,5 +8,3 @@ permalink: /index-stats
 
 # 統計学（頻度論）
 
-- TOC
-{:toc}
