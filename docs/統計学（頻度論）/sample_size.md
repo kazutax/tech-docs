@@ -2,7 +2,7 @@
 layout: default
 title: サンプルサイズ計算
 description: "A/Bテストの有効性は正しいサンプルサイズの選定に大きく依存する。A/Bテストにおけるサンプルサイズ計算の基礎と、カイ二乗検定およびt検定を中心にその方法を解説する。"
-nav_order: 1
+nav_order: 2
 parent: 統計学（頻度論）
 has_children: false
 has_toc: false
