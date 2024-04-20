@@ -2,7 +2,7 @@
 layout: default
 title: Home
 nav_order: 1
-description: "個人的な興味で学んだ内容をまとめて公開しているサイトです。IT・統計・データサイエンスに関することがメイン。"
+description: "個人的な興味で学んだ内容をまとめて公開しているサイトです。IT・統計・データサイエンスに関することを書く。"
 permalink: /
 ---
 

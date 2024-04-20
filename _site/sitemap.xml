@@ -103,6 +103,9 @@
 <loc>http://localhost:4000/docs/navigation-structure/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/docs/%E7%B5%B1%E8%A8%88%E5%AD%A6%EF%BC%88%E9%A0%BB%E5%BA%A6%E8%AB%96%EF%BC%89/plot_dist/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/docs/utilities/responsive-modifiers/</loc>
 </url>
 <url>
@@ -127,10 +130,10 @@
 <loc>http://localhost:4000/docs/%E8%8B%B1%E8%AA%9E/tech-eng/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/docs/ui-components/typography/</loc>
+<loc>http://localhost:4000/docs/utilities/typography/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/docs/utilities/typography/</loc>
+<loc>http://localhost:4000/docs/ui-components/typography/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/docs/ui-components</loc>
