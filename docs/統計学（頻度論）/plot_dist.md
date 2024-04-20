@@ -103,7 +103,7 @@ plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std =
 
 ![dist_base](/tech-docs/assets/images/post-imgs/stats/dist_base.png)
 
-+ CGとTGの平均値の分布を示し、特に棄却領域と検出力領域を色分けして表示している。点線の閾値（Critical Value）を越える部分がどの程度存在するか、そして実際の効果がどれだけ検出可能かが視覚的にグラフで示されている。
++ CG と TG の平均値の分布を示し、特に **<span style="color: blue; ">棄却領域（Rejection Region）</span>** と **<span style="color: red; ">検出力領域（Power Region）</span>** を色分けして表示している。点線の **<span style="color: #71797E; ">閾値（Critical Value）</span>** を越える部分がどの程度存在するか、そして実際の効果がどれだけ検出可能かが視覚的にグラフで示されている。
 + 閾値（Critical Value）は、$$\alpha$$ エラーを制御するための値であり、この値以上の結果が得られた場合に帰無仮説を棄却する。検出力（テストの感度）は、実際に効果がある場合にその効果を正しく検出できる確率を示しており、サンプルサイズを増やすことでこの値を高めることができる。
 
 ## ■ サンプルサイズと効果の大きさの変更が結果に及ぼす影響
@@ -133,7 +133,7 @@ plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std =
 
 ![dist_effect130](/tech-docs/assets/images/post-imgs/stats/dist_effect130.png)
 
-> + 効果の大きさが大きくなると、TG の平均が CG の平均から **より離れる** ことになる。
+> + 効果の大きさが大きくなると、TG の平均値が CG の平均値から **より離れる** ことになる。
 + これにより、分布間の重なりが減少し、帰無仮説を棄却するための **エビデンスが明確** になる。
 + 結果として、**検出力が向上** し、テストの有効性が高まる。
 
