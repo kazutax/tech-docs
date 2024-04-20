@@ -92,10 +92,10 @@ def plot_distributions(sample_size, tg_ratio, cg_mean, pooled_std, lift):
 + 関数の引数として、以下の条件を設定して A/B テストの結果を見てみる。
 
 > サンプルサイズ: **1,000**<br>
-> トリートメント群とコントロール群の比率: **1:1**<br>
-> コントロール群の平均値: **2.3**<br>
-> プールされた標準偏差: **2**<br>
-> 効果の大きさ（lift）: **110%**（TGの平均はCGの 110% 改善を仮定）<br>
+> TG と CG のサンプルサイズ比率: **1:1**<br>
+> CG の指標平均値: **2.3**<br>
+> 標準偏差（両群で同じ値を仮定）: **2**<br>
+> 効果の大きさ（lift）: **110%**（TG は CG の 110% 改善を仮定）<br>
 
 {% highlight python %}
 plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std = 2, lift = 1.1)
