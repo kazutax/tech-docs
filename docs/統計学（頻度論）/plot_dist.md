@@ -101,7 +101,7 @@ def plot_distributions(sample_size, tg_ratio, cg_mean, pooled_std, lift):
 plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std = 2, lift = 1.1)
 {% endhighlight %}
 
-![dist_base](/assets/images/post-imgs/stats/dist_base.png)
+![dist_base](/tech-docs/assets/images/post-imgs/stats/dist_base.png)
 
 + CGとTGの平均値の分布を示し、特に棄却領域と検出力領域を色分けして表示している。閾値を越える部分がどの程度存在するか、そして実際の効果がどれだけ検出可能かが視覚的にグラフで示されている。
 + 閾値（Critical Value）は、$$\alpha$$ エラーを制御するための値であり、この値以上の結果が得られた場合に帰無仮説を棄却する。検出力（テストの感度）は、実際に効果がある場合にその効果を正しく検出できる確率を示しており、サンプルサイズを増やすことでこの値を高めることができる。
@@ -117,7 +117,7 @@ plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std =
 plot_distributions(sample_size = 3000, tg_ratio = 1, cg_mean = 2.3, pooled_std = 2, lift = 1.1)
 {% endhighlight %}
 
-![dist_sample3000](/assets/images/post-imgs/stats/dist_sample3000.png)
+![dist_sample3000](/tech-docs/assets/images/post-imgs/stats/dist_sample3000.png)
 
 > + サンプルサイズを増やすと、標準誤差が減少し、分布がより狭く、**ピークが高く** なる。
 + これにより、平均値の違いがより明確に検出可能となり、**検出力が向上** する。
@@ -131,7 +131,7 @@ plot_distributions(sample_size = 3000, tg_ratio = 1, cg_mean = 2.3, pooled_std =
 plot_distributions(sample_size = 1000, tg_ratio = 1, cg_mean = 2.3, pooled_std = 2, lift = 1.3)
 {% endhighlight %}
 
-![dist_effect130](/assets/images/post-imgs/stats/dist_effect130.png)
+![dist_effect130](/tech-docs/assets/images/post-imgs/stats/dist_effect130.png)
 
 > + 効果の大きさが大きくなると、TG の平均が CG の平均から **より離れる** ことになる。
 + これにより、分布間の重なりが減少し、帰無仮説を棄却するための **エビデンスが明確** になる。
