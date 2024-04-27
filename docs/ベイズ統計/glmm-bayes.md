@@ -96,10 +96,11 @@ data.head()
 | 3 | 1 | 41 |
 | 4 | 0 | 6 |
 
+サンプルサイズが200である全ユーザーについて、`group = 1` のときは施策介入のあった TG であり、その場合の CV 数が多い状態でデータ生成されている。
 
 ### ◆ モデル設計と MCMC
 
-Numpyro を使って DataFrame を基にした MCMC 処理を行う。
+NumPyro を使って、上記の通り定義された DataFrame `data` を基にした MCMC 処理を行う。
 {% highlight python %}
 # モデル設計
 def model(cv_count = None, group = None, num_users = 0):
@@ -136,6 +137,7 @@ plt.show()
 
 ![trace_plot](/tech-docs/assets/images/post-imgs/bayesian/glmm_bayes_traceplot.png)
 
+形状的に問題なさそう。（MCMC は無事に収束している。）
 
 ### ◆ 個別サンプルの出力確認
 
@@ -172,8 +174,7 @@ plt.show()
 
 ![user_sample_plot](/tech-docs/assets/images/post-imgs/bayesian/glmm_bayes_user_sample_plot.png)
 
-
-<span style="color:red">実際の観測値</span> が、<span style="color:blue">生成された分布</span> の概ね平均値周辺に出ているため、モデルがある程度問題なくデータを再現できていることがわかる。
+<span style="color:red">実際の観測値（点線）</span> が、<span style="color:blue">生成された分布（棒グラフ）</span> の概ね平均値周辺に出ているため、モデルがある程度問題なくデータを再現できていることがわかる。
 
 ### ◆ TG/CG 結果の可視化
 MCMC を使用して推定されたパラメータを基にして、テスト群（TG）とコントロール群（CG）の CV 数の推定分布を解析し、可視化する。
@@ -215,6 +216,6 @@ plt.show()
 
 描画されたグラフの結果より、TG は CG に比べて CV 数が高く、実施した介入が効果的であったことが推定される。
 
-ベイズモデルによる推定結果を具体的な A/B テストのシナリオに適用し、グループ間での効果の差を視覚的に評価することができた。
-
+A/B テストの具体的なシナリオ（施策介入によるCV影響）について、GLMM を用いて分析を行なった。
+サンプルサイズが200ユーザーと、A/B テストとしては比較的小規模なデータに対して、ベイズモデルによる推定結果を適用することで、グループ間での効果の差を視覚的に評価することができた。
 
