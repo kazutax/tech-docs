@@ -9,7 +9,7 @@ has_toc: false
 # permalink: /index-stats
 ---
 
-# A/Bテストのためのサンプルサイズ計算
+# A/B テストのためのサンプルサイズ計算
 
 + A/Bテストの有効性は正しいサンプルサイズの選定に大きく依存する。
 + カイ二乗検定および独立標本t検定における、サンプルサイズ計算方法を以下に示す。
@@ -65,7 +65,7 @@ n1, n2 = calculate_sample_size_chisquare(0.3, 0.05, 0.8, 1)
 print(f"介入群のサンプルサイズ: {n1}, コントロール群のサンプルサイズ: {n2}")
 {% endhighlight %}
 
-### ◆ 独立標本t検定の場合
+### ◆ 独立標本 t 検定の場合
 {% highlight python %}
 def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio = 1):
     """
@@ -93,7 +93,7 @@ def calculate_sample_size_ttest_cohens_d(d, alpha, power, ratio = 1):
 ※ 効果量（Cohen's d）は以下で求める
 
 {% highlight python %}
-# Cohen's dを計算（標準偏差が群間で等しいと仮定）
+# Cohen's d を計算（標準偏差が群間で等しいと仮定）
 cohen_d = (mean_a - mean_b) / std_common
 {% endhighlight %}
 
@@ -105,5 +105,5 @@ print(f"介入群のサンプルサイズ: {n1}, コントロール群のサン�
 {% endhighlight %}
 
 ## ■ 備考
-+ A/Bテストに必要なサンプルサイズは、期待する効果量からどの程度必要か、上記のやり方で手に入る。
++ A/B テストに必要なサンプルサイズは、期待する効果量からどの程度必要か、上記のやり方で手に入る。
 + 必要な「テスト期間」についても、上記の効果量を正しく検定するサンプルサイズを得るのに、どの程度の期間を要するのか、から概算可能。
