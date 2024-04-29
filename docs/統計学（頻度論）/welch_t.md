@@ -96,6 +96,8 @@ Welch の t 検定を行い、二つのグループ間での平均の差を検�
 通常のt検定（独立二標本 t 検定）では、`equal_var = True` ← 両群の分散が等しいことを仮定する
 
 {% highlight python %}
+from scipy.stats import ttest_ind
+
 # TG と CG のデータを分ける
 tg_data = df[df['group'] == 'TG']['cv_per_visitor']
 cg_data = df[df['group'] == 'CG']['cv_per_visitor']
